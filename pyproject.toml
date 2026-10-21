@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fossil-investigator"
+version = "0.1.0"
+description = "A persistent, evidence-driven software archaeology investigator"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+fossil = "fossil.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["fossil*"]

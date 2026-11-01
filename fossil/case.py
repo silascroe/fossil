@@ -13,6 +13,13 @@ from .inventory import MAX_FILE_TOKENS, MAX_TOTAL_TOKENS, inspect
 from .report import render
 
 
+MAX_HOPS = 4
+
+
+def key(value: str) -> str:
+    return value.removeprefix("https://github.com/").partition("@")[0].lower()
+
+
 def public_inventory(inv: dict) -> dict:
     return {**inv, "files": [{k: v for k, v in f.items() if k not in {"text", "tokens", "token_lines"}} for f in inv["files"]]}
 
@@ -68,21 +75,45 @@ def investigate(target: str, candidates: list[str], path: Path, *, discover: boo
             leads.setdefault(name, []).extend(reasons)
     else:
         case["limitations"].append("Independent discovery was disabled by the operator.")
-    for index, (value, reasons) in enumerate(leads.items()):
+    from .assessment import assess
+    from .discovery import second_hop
+    queue = list(leads.items())
+    # A failed acquisition does not use up an evaluation, but attempts are still bounded.
+    evaluated = attempts = hops = 0
+    skip = {x.lower() for x in exclude} | {case["target"].get("repository", "").lower()}
+    position = 0
+    while position < len(queue):
+        value, reasons = queue[position]
+        position += 1
         lead = {"repository": value, "provenance": reasons, "status": "not examined: candidate budget"}
         case["leads"].append(lead)
-        if index >= max_candidates:
+        if evaluated >= max_candidates or attempts >= 2 * max_candidates:
             continue
+        attempts += 1
+        label = "candidate-" + str(attempts)
         try:
-            candidate = acquire(value, "candidate-" + str(index + 1))
-            result = compare(inventories["target"], inventories["candidate-" + str(index + 1)])
-            from .assessment import assess
+            candidate = acquire(value, label)
+            result = compare(inventories["target"], inventories[label])
             result = assess(result, case["target"], candidate)
             result.update(candidate=candidate, provenance=reasons)
             case["comparisons"].append(result)
             lead["status"] = result["verdict"]
+            evaluated += 1
         except (AcquisitionError, OSError, ValueError) as e:
             lead["status"] = "failed: " + str(e)
+            save(case, path)
+            continue
+        if discover and hops < MAX_HOPS:
+            # Copies of the target often keep the credits the target lost; evaluate what they name next.
+            done = {key(x["repository"]) for x in case["leads"]} | skip
+            for offset, (name, why) in enumerate(second_hop(candidate, inventories[label], result, done)[:min(2, MAX_HOPS - hops)]):
+                hops += 1
+                waiting = next((i for i in range(position, len(queue)) if key(queue[i][0]) == name.lower()), None)
+                if waiting is not None:
+                    name, earlier = queue.pop(waiting)
+                    why = why + earlier
+                queue.insert(position + offset, (name, why))
+                case["discovery"].append({"action": "second-hop lead", "detail": f"{name}: {why[0]}"})
         save(case, path)
     if ai:
         case["ai"] = ai.interpret(case)

@@ -95,7 +95,7 @@ def prepare(work: Path, pairs: list[dict]) -> None:
         print("  stripped:", stats, flush=True)
 
 
-def run(work: Path, pairs: list[dict], tag: str, only: list[str], pause: int) -> None:
+def run(work: Path, pairs: list[dict], tag: str, only: list[str], pause: int, fossil: Path = ROOT) -> None:
     if not (os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")):
         sys.exit("Set GITHUB_TOKEN: code search is the path this benchmark measures.")
     for pair in pairs:
@@ -111,7 +111,7 @@ def run(work: Path, pairs: list[dict], tag: str, only: list[str], pause: int) ->
                    "--cache", str(work / "cache"), "--exclude", pair["target"]]
             print("running", condition, pair["id"], flush=True)
             started = time.time()
-            p = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace")
+            p = subprocess.run(cmd, cwd=fossil, capture_output=True, text=True, encoding="utf-8", errors="replace")
             (work / "logs").mkdir(parents=True, exist_ok=True)
             (work / "logs" / f"{tag}-{condition}-{pair['id']}.log").write_text(p.stdout + p.stderr, encoding="utf-8")
             print(f"  exit {p.returncode} in {time.time() - started:.0f}s", flush=True)
@@ -200,12 +200,13 @@ def main() -> None:
     parser.add_argument("--tag", default="baseline", help="Names a run, so results from different Fossil versions stay apart")
     parser.add_argument("--only", nargs="*", default=[])
     parser.add_argument("--pause", type=int, default=25, help="Seconds between runs, for the code search rate limit")
+    parser.add_argument("--fossil", type=Path, default=ROOT, help="Fossil checkout to run (for example a worktree of an older release)")
     args = parser.parse_args()
     work, pairs = args.work.resolve(), load(args.set)
     if args.command == "prepare":
         prepare(work, pairs)
     elif args.command == "run":
-        run(work, pairs, args.tag, args.only, args.pause)
+        run(work, pairs, args.tag, args.only, args.pause, args.fossil.resolve())
     else:
         result = score(work, pairs, args.tag)
         out = ROOT / "bench" / "results" / f"{args.tag}-{args.set}.json"

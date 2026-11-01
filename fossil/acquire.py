@@ -55,7 +55,9 @@ def extract_zip(archive: Path, destination: Path) -> list[str]:
     warnings = []
     total = 0
     with zipfile.ZipFile(archive) as z:
-        if len(z.infolist()) > MAX_FILES:
+        # Count only what would be kept: a repository with a committed venv/ or node_modules/ is not too large.
+        kept = [i for i in z.infolist() if not i.is_dir() and not any(p in SKIP for p in PurePosixPath(i.filename.replace("\\", "/")).parts)]
+        if len(kept) > MAX_FILES or len(z.infolist()) > 10 * MAX_FILES:
             raise AcquisitionError("ZIP exceeds 10,000 entries")
         # Validate all names before writing anything.
         for info in z.infolist():

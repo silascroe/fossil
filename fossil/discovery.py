@@ -8,10 +8,70 @@ from urllib.parse import urlencode
 
 from .acquire import AcquisitionError, repo_name
 from .assessment import DERIVATION, INFLUENCE
-from .inventory import context
+from .inventory import SOURCE, SUPPORT_DIRS, context
 
 
 MAX_LEADS = 24
+DOC = re.compile(r"readme|notice|copying|licen[cs]e|authors|credits|history", re.I)
+
+
+def own_source(path: str | None) -> bool:
+    """Whether a code-search hit sits in a project's own source rather than a bundled copy or a data/doc file.
+
+    Popular code is committed inside virtualenvs, vendor trees and generated reports far more often than
+    it is maintained; those copies otherwise outnumber the project that actually develops it.
+    """
+    if not path:
+        return True
+    suffix = Path(path).suffix.lower()
+    # Extensionless files may be scripts (neofetch is one); only a known non-source extension demotes.
+    return (not suffix or suffix in SOURCE) and context(path, "") not in {"vendored/external", "generated"}
+
+
+CONFIRMING = {"code_overlap", "component_overlap", "corroborated_derivation", "corroborated_component", "shared_history", "declared_fork"}
+
+
+def second_hop(candidate: dict, inventory: dict, result: dict, skip: set[str]) -> list[tuple[str, list[str]]]:
+    """Repositories that a confirmed copy names, ranked by how much shared code names them.
+
+    A copy of the target often keeps credits the target lost. Only references inside files
+    that overlapped the target, or relationship statements in the copy's docs, count;
+    a copy's other links describe the copy, not the shared code. These are leads only:
+    each still has to show source overlap with the target itself.
+    """
+    if result["verdict"] not in CONFIRMING:
+        return []
+    matched = {m["candidate_path"] for m in result["matches"]}
+    source = (candidate.get("repository") or candidate["input"]).lower()
+    found = {}
+    for ref in inventory["references"]:
+        name = repo_name(ref["repository"])
+        if not name or name.lower() in skip or name.lower() == source:
+            continue
+        if SUPPORT_DIRS & set(Path(ref["path"]).parts[:-1]):
+            continue  # CI, packaging and doc tooling link to their own dependencies
+        statement = ref.get("statement", ref["text"])
+        # As for the target's own credits: a project's lineage is stated in its docs; a comment
+        # such as "based on CPython" in source credits one snippet, so it counts as a plain mention.
+        relation = bool(DERIVATION.search(statement) or INFLUENCE.search(statement)) and bool(DOC.search(ref["path"])) \
+            and context(ref["path"], "") == "application"
+        if ref["path"] not in matched and not relation:
+            continue
+        entry = found.setdefault(name.lower(), {"name": name, "files": set(), "relation": False, "example": ref})
+        if ref["path"] in matched:
+            entry["files"].add(ref["path"])
+        if relation and not entry["relation"]:
+            entry["relation"], entry["example"] = True, ref
+    # One stray link in one shared file is not enough; two shared files or a stated relationship is.
+    score = lambda e: len(e["files"]) + 2 * e["relation"]
+    ranked = sorted((e for e in found.values() if score(e) >= 2), key=lambda e: (-score(e), e["name"].lower()))
+    hops = []
+    for e in ranked:
+        basis = " and ".join(x for x in (f"{len(e['files'])} file(s) it shares with the target" if e["files"] else "",
+                                         "a relationship statement" if e["relation"] else "") if x)
+        ex = e["example"]
+        hops.append((e["name"], [f"Named by confirmed candidate {source} in {basis}; e.g. {ex['path']}:{ex['line']}: {ex['text'][:200]}"]))
+    return hops
 
 
 def find_candidates(target: dict, inventory: dict, client, *, ai=None, exclude: set[str] = frozenset()) -> tuple[dict, list]:
@@ -37,7 +97,7 @@ def find_candidates(target: dict, inventory: dict, client, *, ai=None, exclude: 
         if query:
             # Independent code searches converging on one repository is stronger than any single hit.
             entry["queries"].add(query)
-            rank = min(70, rank + 5 * (len(entry["queries"]) - 1))
+            rank = min(rank + 10, rank + 5 * (len(entry["queries"]) - 1))
         entry["rank"] = max(entry["rank"], rank)
         entry["position"] = min(entry["position"], position)
         entry["reasons"][reason] = max(rank, entry["reasons"].get(reason, 0))
@@ -48,7 +108,7 @@ def find_candidates(target: dict, inventory: dict, client, *, ai=None, exclude: 
             add(meta[key]["full_name"], "GitHub fork " + key + " metadata", 100)
     for ref in inventory["references"]:
         relation = bool(DERIVATION.search(ref.get("statement", ref["text"])) or INFLUENCE.search(ref.get("statement", ref["text"])))
-        doc = bool(re.search(r"readme|notice|copying|licen[cs]e|authors|credits|history", ref["path"], re.I))
+        doc = bool(DOC.search(ref["path"]))
         # A credit inside vendored, test or generated files describes that bundled code's lineage, not the
         # target's; ranking it like a project statement lets deps/*/README files crowd out code-search hits.
         bundled = context(ref["path"], "") != "application"
@@ -66,7 +126,8 @@ def find_candidates(target: dict, inventory: dict, client, *, ai=None, exclude: 
             for position, item in enumerate(items):
                 name = item.get("repository", {}).get("full_name") if kind == "code" else item.get("full_name")
                 if name:
-                    add(name, f"GitHub {kind} search: {query}" + ("; " + item["html_url"] if item.get("html_url") else ""), 60 if kind == "code" else 35,
+                    rank = (60 if own_source(item.get("path")) else 45) if kind == "code" else 35
+                    add(name, f"GitHub {kind} search: {query}" + ("; " + item["html_url"] if item.get("html_url") else ""), rank,
                         query=query if kind == "code" else None, position=position)
             return True
         except AcquisitionError as e:

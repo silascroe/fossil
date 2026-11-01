@@ -6,7 +6,9 @@ Fossil's demonstrations found ancestry that the target documented itself. This b
 
 [pairs.json](pairs.json) lists 13 targets whose upstream is documented (fork metadata, README declaration, or a vendoring manifest). Eleven are whole-project derivations; two are component cases (pip vendoring requests, hyfetch bundling neofetch). Targets are pinned to exact commits. Long-diverged pairs (gitea/gogs, valkey/redis, lodash/underscore, pypdf/pyPdf) are pinned near the split, so the shared code really is present. These pairs were used to find and fix weaknesses, so results on them are in-sample.
 
-[holdout.json](holdout.json) lists six more pairs (searxng, flask-security, pillow-simd, postman-request, bbolt, mlua) chosen and pinned *before* the improved version was run on them. They are the honest estimate.
+[holdout.json](holdout.json) lists six more pairs (searxng, flask-security, pillow-simd, postman-request, bbolt, mlua) chosen and pinned *before* 0.2 was run on them. They were the honest estimate for 0.2, and their failures informed 0.3, so they are in-sample from 0.3 on.
+
+[holdout2.json](holdout2.json) lists eight pairs across Rust, JavaScript, Go, Python and C (eza, terser, golang-jwt, nextcord, pycryptodome, angie, neovim, mysqlclient), committed before any 0.3 code was written and run only after 0.3 was frozen. Each tuning round needs a new holdout like this one.
 
 Each target is investigated twice, both times as a **local snapshot with no Git history and no GitHub metadata**. That removes fork metadata and shared commits, the two strongest signals in a normal run.
 
@@ -22,12 +24,12 @@ For each run, `score` records whether the true upstream appeared among the disco
 ## Reproduce
 
 ```sh
-python bench/run.py prepare [--set holdout]                 # fetch pinned targets, build intact/stripped subjects
-GITHUB_TOKEN=... python bench/run.py run --tag v3 [--set holdout]
-GITHUB_TOKEN=... python bench/run.py score --tag v3 [--set holdout]   # writes bench/results/v3-<set>.json
+python bench/run.py prepare [--set holdout2]               # fetch pinned targets, build intact/stripped subjects
+GITHUB_TOKEN=... python bench/run.py run --tag v4 [--set holdout2]
+GITHUB_TOKEN=... python bench/run.py score --tag v4 [--set holdout2]  # writes bench/results/v4-<set>.json
 ```
 
-`--tag` keeps runs from different Fossil versions apart. Runs pause 25 seconds between investigations for the code-search rate limit; reruns within 24 hours reuse cached searches, so a lower `--pause` is safe then.
+`--tag` keeps runs from different Fossil versions apart. `--fossil PATH` runs another checkout, for example a worktree of 0.2 made with `git worktree add ../fossil-0.2 10c3562`, so an older release can be measured on a new holdout. Runs pause 25 seconds between investigations for the code-search rate limit; reruns within 24 hours reuse cached searches, so a lower `--pause` is safe then.
 
 The working directory defaults to `~/.cache/fossil-bench`. Search results depend on GitHub's live index, so reruns can differ; the saved cases record every query and response digest.
 

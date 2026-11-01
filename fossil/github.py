@@ -49,7 +49,7 @@ class GitHub:
         if self.calls >= 30:
             raise AcquisitionError("GitHub HTTP request budget (30) exhausted")
         self.calls += 1
-        headers = {"Accept": "application/vnd.github+json", "User-Agent": "fossil-investigator/0.2", "X-GitHub-Api-Version": "2022-11-28"}
+        headers = {"Accept": "application/vnd.github+json", "User-Agent": "fossil-investigator/0.3", "X-GitHub-Api-Version": "2022-11-28"}
         if self.token:
             headers["Authorization"] = "Bearer " + self.token
         try:

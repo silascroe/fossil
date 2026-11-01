@@ -68,11 +68,16 @@ def generic_tokens(text: str) -> tuple[list[str], list[int]]:
     return tokens, lines
 
 
+BUNDLED_DIRS = {"vendor", "vendored", "_vendor", "third_party", "third-party", "external", "deps",
+                "site-packages", "dist-packages", "node_modules", "bower_components"}
+TEST_NAME = re.compile(r"^test_|_test\.go$|\.(?:test|spec)\.[jt]sx?$")
+
+
 def context(path: str, text: str) -> str:
     parts = set(Path(path).parts)
-    if parts & {"vendor", "vendored", "third_party", "third-party", "external", "deps"}:
+    if parts & BUNDLED_DIRS:
         return "vendored/external"
-    if parts & {"test", "tests", "fixtures", "examples", "example"} or Path(path).name.startswith("test_"):
+    if parts & {"test", "tests", "fixtures", "examples", "example"} or TEST_NAME.search(Path(path).name):
         return "test/example"
     if ".min." in path or re.search(r"(?:auto.?generated|do not edit)", text[:1000], re.I):
         return "generated"
@@ -179,6 +184,10 @@ DEFINITION = re.compile(r"\b(?:def|function|class|func|fn|struct|interface|enum|
 C_DEFINITION = re.compile(r"^(?!(?:return|else|if|while|for|switch|case|typedef|extern)\b)[A-Za-z_][\w \t\*&:<>,]*?[\s\*&]([A-Za-z_]\w{11,})\s*\([^;]*$", re.M)
 C_FAMILY = {".c", ".h", ".cpp", ".hpp", ".cc", ".m"}
 SHELL_DEFINITION = re.compile(r"^\s*(?:function\s+)?([A-Za-z_][\w]{11,})\s*\(\)", re.M)
+# JavaScript also defines by assignment: `name = function (`, `name: function (`, `const name = (a) =>`.
+JS_DEFINITION = re.compile(DEFINITION.pattern + r"|(?:^|[\s.,{])([A-Za-z_$][\w$]{11,})\s*[:=]\s*(?:async\s+)?function\b"
+                           r"|\b(?:const|let|var)\s+([A-Za-z_$][\w$]{11,})\s*=\s*(?:async\s*)?(?:\([^()]*\)|[A-Za-z_$][\w$]*)\s*=>")
+JS_FAMILY = {".js", ".jsx", ".ts", ".tsx", ".mjs", ".cjs", ".vue", ".svelte"}
 
 
 def parts(name: str) -> int:
@@ -198,9 +207,9 @@ def search_terms(files: list[dict]) -> list[list[str]]:
         group = []
         suffix = Path(f["path"]).suffix.lower()
         shell = suffix == ".sh" or (suffix == "" and re.match(r"#!.*\b(?:ba|z|k|da)?sh\b", f["text"]))
-        pattern = C_DEFINITION if suffix in C_FAMILY else SHELL_DEFINITION if shell else DEFINITION
+        pattern = C_DEFINITION if suffix in C_FAMILY else SHELL_DEFINITION if shell else JS_DEFINITION if suffix in JS_FAMILY else DEFINITION
         for m in pattern.finditer(f["text"]):
-            name = m.group(1)
+            name = next(g for g in m.groups() if g)
             if name not in seen and parts(name) >= 2 and not name.lower().startswith("test"):
                 seen.add(name)
                 group.append(name)

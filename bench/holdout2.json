@@ -1,0 +1,21 @@
+{
+  "note": "Second holdout, chosen and pinned on 2026-11-01 before any 0.3 change was written, and not run on any version until 0.3 was frozen. Same format as pairs.json. Upstreams are compared at their current default branch, so pairs whose upstream was later rewritten (jshint/JSLint) were left out.",
+  "pairs": [
+    {"id": "eza", "target": "eza-community/eza", "ref": "1a947b77d1aacf369470eb7fcd1350cdb5753e67", "upstream": "ogham/exa", "kind": "project",
+     "evidence": "eza forked exa in July 2023; README says it is built on exa. Pinned August 2023.", "terms": ["ogham", "Benjamin Sago"], "leaks": "exa is still named in code and tests."},
+    {"id": "terser", "target": "terser/terser", "ref": "d8c042f087c5f58c4dd7ab6402e51235f2f81fd9", "upstream": "mishoo/UglifyJS", "kind": "project",
+     "evidence": "terser forked uglify-es (the UglifyJS harmony branch) in 2018 and carries its history; README declares API compatibility with uglify-es. Pinned May 2018.", "terms": ["mishoo", "Mihai Bazon"], "leaks": "uglify-es and UglifyJS are still named in code and tests."},
+    {"id": "golang-jwt", "target": "golang-jwt/jwt", "ref": "4bbdd8ac624fc7a9ef7aec841c43d99b5fe65a29", "upstream": "dgrijalva/jwt-go", "kind": "project",
+     "evidence": "golang-jwt continued dgrijalva/jwt-go in 2021; README documents the import path change. Pinned July 2021.", "terms": ["dgrijalva", "Dave Grijalva"], "leaks": ""},
+    {"id": "nextcord", "target": "nextcord/nextcord", "ref": "0e88db9fbd9c6c80bfe7f023ae0672e5078ce0d6", "upstream": "Rapptz/discord.py", "kind": "project",
+     "evidence": "nextcord forked discord.py in August 2021; README has a fork notice. Pinned September 2021.", "terms": ["Rapptz", "Danny", "discord\\.py"], "leaks": "The package directory is still named discord."},
+    {"id": "pycryptodome", "target": "Legrandin/pycryptodome", "ref": "e9adec93c7243d2ee16f748090d5a102866d30c5", "upstream": "pycrypto/pycrypto", "kind": "project",
+     "evidence": "README: 'It is a fork of PyCrypto.' Pinned December 2014.", "terms": ["dlitz", "Dwayne Litzenberger", "PyCrypto"], "leaks": "The package is still named Crypto."},
+    {"id": "angie", "target": "webserver-llc/angie", "ref": "ca3f5c9fe9d738e7da5d9cc6519ecc98975072c4", "upstream": "nginx/nginx", "kind": "project",
+     "evidence": "README: Angie 'was forked from nginx by some of its former core devs'. Pinned February 2023.", "terms": ["Igor Sysoev", "Nginx, Inc", "nginx\\.org"], "leaks": "nginx and ngx_ names are everywhere."},
+    {"id": "neovim", "target": "neovim/neovim", "ref": "e18c075b703f85a6b30866851a02b682debf041e", "upstream": "vim/vim", "kind": "project",
+     "evidence": "Neovim began in 2014 as a refactor of the Vim source; README says so. Pinned February 2014.", "terms": ["Bram Moolenaar", "Bram", "vim\\.org"], "leaks": "Vim's name is everywhere."},
+    {"id": "mysqlclient", "target": "PyMySQL/mysqlclient", "ref": "8cc6261fe24f3ded26d52cd94887040e7e0acee0", "upstream": "farcepest/MySQLdb1", "kind": "project",
+     "evidence": "README: 'This is a fork of MySQLdb1.' Pinned May 2014.", "terms": ["farcepest", "Andy Dustman", "adustman", "MySQLdb1"], "leaks": "The package is still named MySQLdb."}
+  ]
+}

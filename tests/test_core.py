@@ -92,8 +92,33 @@ class CoreTests(unittest.TestCase):
         self.assertFalse((self.root / "escape.py").exists())
         from fossil.inventory import inspect
         p = self.project("a")
-        (p / "link.py").symlink_to(p / "engine.py")
+        try:
+            (p / "link.py").symlink_to(p / "engine.py")
+        except OSError:
+            self.skipTest("creating symlinks needs extra privileges on this platform")
         self.assertEqual(len(inspect(p)["files"]), 1)
+
+    def test_inventory_order_is_case_sensitive_and_component_wise_on_every_platform(self):
+        # The snapshot digest depends on file order; cases must replay on any OS.
+        from fossil.inventory import inspect
+        p = self.root / "order"
+        (p / "utils").mkdir(parents=True)
+        for name in ("a.py", "B.py", "utils.md", "utils/x.py"):
+            (p / name).write_text("pass\n")
+        self.assertEqual([f["path"] for f in inspect(p)["files"]], ["B.py", "a.py", "utils/x.py", "utils.md"])
+
+    def test_history_reads_utf8_case_ledgers_regardless_of_locale(self):
+        import io
+        from contextlib import redirect_stdout
+        from fossil.cli import main
+        case = self.root / "cases" / "one"
+        case.mkdir(parents=True)
+        ledger = {"created_at": "2026-11-01T00:00:00+00:00", "id": "abc", "target": {"input": "Łódź"}}
+        (case / "case.json").write_text(json.dumps(ledger, ensure_ascii=False), encoding="utf-8")
+        out = io.StringIO()
+        with redirect_stdout(out):
+            self.assertEqual(main(["history", "--cases", str(self.root / "cases")]), 0)
+        self.assertIn("Łódź", out.getvalue())
 
     def test_cli_preserves_replayable_case_and_local_working_tree(self):
         a, b = self.project("a"), self.project("b")

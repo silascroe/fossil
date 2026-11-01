@@ -54,7 +54,7 @@ def investigate(target: str, candidates: list[str], path: Path, *, discover: boo
     for c in candidates:
         leads[c] = ["Explicit candidate supplied by operator"]
     if follow_up:
-        previous = json.loads((follow_up / "case.json").read_text())
+        previous = json.loads((follow_up / "case.json").read_text(encoding="utf-8"))
         case["previous_case"] = {"id": previous["id"], "path": str(follow_up.resolve()), "target_digest": previous["target"]["inventory"]["digest"]}
         for c in previous["comparisons"]:
             leads.setdefault(c["candidate"]["input"], []).append("Revisited from prior case " + previous["id"])

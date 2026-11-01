@@ -100,7 +100,8 @@ def inspect(root: Path) -> dict:
     for base, dirs, names in os.walk(root, followlinks=False):
         dirs[:] = sorted(d for d in dirs if d not in SKIP and not (Path(base) / d).is_symlink())
         paths.extend(Path(base) / name for name in names)
-    for p in sorted(paths):
+    # Case-sensitive, component-wise order keeps digests identical across operating systems.
+    for p in sorted(paths, key=lambda q: q.relative_to(root).parts):
         rel = p.relative_to(root).as_posix()
         if any(part in SKIP for part in p.relative_to(root).parts) or p.is_symlink() or not p.is_file():
             continue

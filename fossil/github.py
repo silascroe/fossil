@@ -41,7 +41,7 @@ class GitHub:
         path = self.cache / "http" / (key + ".json")
         now = datetime.now(timezone.utc).isoformat()
         if path.exists() and (self.offline or (not self.refresh and time.time() - path.stat().st_mtime < 86400)):
-            cached = json.loads(path.read_text())
+            cached = json.loads(path.read_text(encoding="utf-8"))
             self.trail.append({"url": url, "status": "cached", "observed_at": cached["observed_at"], "used_at": now, "response_sha256": cached["sha256"]})
             return cached["data"]
         if self.offline:
@@ -66,7 +66,7 @@ class GitHub:
         digest = hashlib.sha256(raw).hexdigest()
         path.parent.mkdir(parents=True, exist_ok=True)
         tmp = path.with_suffix(".tmp")
-        tmp.write_text(json.dumps({"observed_at": now, "sha256": digest, "data": data}))
+        tmp.write_text(json.dumps({"observed_at": now, "sha256": digest, "data": data}), encoding="utf-8")
         tmp.replace(path)
         self.trail.append({"url": url, "status": "fetched", "observed_at": now, "response_sha256": digest})
         return data

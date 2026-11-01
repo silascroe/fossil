@@ -35,7 +35,7 @@ def main(argv=None) -> int:
     try:
         if args.command == "history":
             for path in sorted(args.cases.glob("*/case.json")):
-                c = json.loads(path.read_text())
+                c = json.loads(path.read_text(encoding="utf-8"))
                 print(c["created_at"], c["id"], c["target"]["input"], path.parent)
             return 0
         if args.command == "replay":

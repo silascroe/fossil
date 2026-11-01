@@ -21,6 +21,19 @@ class HardeningTests(unittest.TestCase):
         self.root = Path(self.tmp.name)
         self.addCleanup(self.tmp.cleanup)
 
+    def test_zip_over_snapshot_budget_is_sampled_not_rejected(self):
+        archive = self.root / "big.zip"
+        with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED) as z:
+            z.writestr("a/engine.py", CODE)
+            for i in range(3):
+                z.writestr(f"b/blob{i}.dat", b"x" * 900_000)
+        with patch("fossil.acquire.MAX_TOTAL", 2_000_000):
+            warnings = extract_zip(archive, self.root / "out")
+        self.assertTrue((self.root / "out/a/engine.py").is_file())
+        written = sum(p.stat().st_size for p in (self.root / "out").rglob("*") if p.is_file())
+        self.assertLessEqual(written, 2_000_000)
+        self.assertTrue(any(w.startswith("Acquisition limit") for w in warnings))
+
     def test_zip_with_large_asset_skips_asset_but_keeps_code(self):
         archive = self.root / "repo.zip"
         with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED) as z:
@@ -46,6 +59,20 @@ class HardeningTests(unittest.TestCase):
         investigate(str(a), [], case)
         (case / "snapshots/target/engine.py").write_text("tampered")
         with self.assertRaisesRegex(AcquisitionError, "integrity"):
+            replay(case)
+
+    def test_older_version_case_replays_when_evidence_reproduces_and_fails_when_it_does_not(self):
+        a, b = self.root / "a", self.root / "b"; a.mkdir(); b.mkdir()
+        (a / "engine.py").write_text(CODE); (b / "engine.py").write_text(CODE)
+        case = self.root / "case"
+        investigate(str(a), [str(b)], case)
+        ledger = json.loads((case / "case.json").read_text(encoding="utf-8"))
+        ledger["version"] = "0.0.1"
+        (case / "case.json").write_text(json.dumps(ledger), encoding="utf-8")
+        self.assertIn("0.0.1", replay(case)["replay_note"])
+        ledger["comparisons"][0]["verdict"] = "not_established"
+        (case / "case.json").write_text(json.dumps(ledger), encoding="utf-8")
+        with self.assertRaisesRegex(AcquisitionError, "verdict.*0.0.1"):
             replay(case)
 
     def test_followup_preserves_old_case_and_records_changes(self):

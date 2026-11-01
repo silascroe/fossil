@@ -1,10 +1,10 @@
-# Fossil v0.1 design and execution record
+# Fossil design and execution record
 
-The user's brief is the specification: a persistent, evidence-driven CLI investigator with real verification, independent discovery, and restraint demonstrations. External repositories are read-only. No push, publication, or deployment is authorized.
+The user's brief is the specification: a persistent, evidence-driven CLI investigator with real verification, independent discovery, and restraint demonstrations. External repositories are read-only.
 
 Python 3.11+ and Git; standard library at runtime. Inspect → discover → compare → assess → report. Token shingles shortlist source pairs; contiguous token matches and exact hashes provide examples. Vendored/test/generated material is separate. Documentary statements, shared commits, and fork metadata corroborate ancestry; similarity alone has no direction. Dates are observations, not proof of authorship. Dependencies and licenses never establish ancestry.
 
-Each case preserves a JSON ledger, Markdown report, content-addressed snapshots, requests, queries, rejected hypotheses, revisions, file hashes, parameters, and limitations. A reusable HTTP/Git cache avoids repeated downloads. Discovery begins only from the target: fork metadata, contextual references, then bounded GitHub searches derived from distinctive source symbols and documentation. Optional OpenAI-compatible AI can propose leads or interpret evidence, but cannot upgrade deterministic verdicts.
+Each case preserves a JSON ledger, Markdown report, content-addressed snapshots, requests, queries, rejected hypotheses, revisions, file hashes, parameters, and limitations. A reusable HTTP/Git cache avoids repeated downloads. Discovery begins only from the target: fork metadata, contextual references, then bounded GitHub code searches for pairs of names defined together in the largest core source files, and repository searches from documentation. Credits inside vendored, test or generated files rank below code-search hits, since they describe bundled code rather than the target. Measured in [bench/RESULTS.md](../bench/RESULTS.md). Optional OpenAI-compatible AI can propose leads or interpret evidence, but cannot upgrade deterministic verdicts.
 
 ## Native implementation plan (test first)
 
@@ -25,4 +25,4 @@ Repository inspection complete; no existing application/tests.
 
 Final review: a fresh reviewer reproduced seven important issues (fsmonitor execution, copied credentials, negated/instructional attribution, component scope, unbounded repetitive diff, ledger-trusting replay, ZIP scope). All were fixed with failing regression tests followed by a green full suite. Python-native normalization was added after the real historical queue lead initially had too-short lexical matches. Pair/token budgets intentionally reduce recall and are disclosed. No deferred review findings remain.
 
-Process rulings: use a single deterministic stateful investigator with an optional advisor; no paid live AI call without a supplied model key. Use documented ancestry/component discovery as the real first benchmark, and disclose that authenticated code-only discovery has not been demonstrated. Conservative thresholds intentionally reject weak matches; false negatives are preferable to invented ancestry. No pushes or deployment.
+Process rulings: use a single deterministic stateful investigator with an optional advisor; no paid live AI call without a supplied model key. Documented ancestry/component discovery was the first benchmark; code-only discovery is measured separately in [bench/](../bench/README.md) on tuning and holdout pairs. Conservative thresholds intentionally reject weak matches; false negatives are preferable to invented ancestry.

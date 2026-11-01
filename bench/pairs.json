@@ -1,0 +1,31 @@
+{
+  "note": "Ground truth: each target is documented as derived from, or as vendoring, its upstream. Targets are pinned; long-diverged pairs are pinned near the split. 'terms' are case-insensitive whole-word patterns scrubbed in the stripped condition. 'leaks' names hints that stripping cannot remove without rewriting code.",
+  "pairs": [
+    {"id": "django-q2", "target": "django-q2/django-q2", "ref": "5e674f91b7d436dac3dee8956cf5a5a2995a0e47", "upstream": "Koed00/django-q", "kind": "project",
+     "evidence": "GitHub fork of Koed00/django-q; README declares the fork.", "terms": ["Koed00", "Ilan Steemers", "Steemers"], "leaks": "Package is still named django_q."},
+    {"id": "flask-caching", "target": "pallets-eco/flask-caching", "ref": "8841e95d29fb55b0c19456244fc9d6665c4ad597", "upstream": "thadeusb/flask-cache", "kind": "project",
+     "evidence": "README/CHANGES describe Flask-Caching as a fork of Flask-Cache.", "terms": ["thadeusb", "Thadeus Burgess", "Flask-Cache", "flask_cache"], "leaks": ""},
+    {"id": "flask-restx", "target": "python-restx/flask-restx", "ref": "30abd919e7c6bb2533eef57ec9c2339d7de69b39", "upstream": "noirbizarre/flask-restplus", "kind": "project",
+     "evidence": "README describes Flask-RESTX as a community fork of Flask-RESTPlus.", "terms": ["noirbizarre", "Axel Haustant", "restplus", "flask-restplus", "flask_restplus"], "leaks": ""},
+    {"id": "niquests", "target": "jawah/niquests", "ref": "fd4cf2a3e46e28e2765433da9a3c02a3e6e1f629", "upstream": "psf/requests", "kind": "project",
+     "evidence": "GitHub fork of psf/requests; README declares it.", "terms": ["psf/requests", "Kenneth Reitz", "kennethreitz", "python-requests\\.org"], "leaks": "The word 'requests' is everywhere and cannot be scrubbed."},
+    {"id": "urllib3-future", "target": "jawah/urllib3.future", "ref": "e30b170b6e0ecf8ad5afeb6fb7604a651d3b7e4b", "upstream": "urllib3/urllib3", "kind": "project",
+     "evidence": "GitHub fork of urllib3/urllib3; README declares it.", "terms": ["urllib3/urllib3", "Andrey Petrov", "shazow"], "leaks": "Package is still named urllib3."},
+    {"id": "asyncclick", "target": "python-trio/asyncclick", "ref": "62f216c3c631e5ca3a42bfacfca443ff15ade481", "upstream": "pallets/click", "kind": "project",
+     "evidence": "GitHub fork of pallets/click; README declares it.", "terms": ["pallets", "Armin Ronacher", "mitsuhiko", "palletsprojects"], "leaks": ""},
+    {"id": "hyfetch", "target": "hykilpikonna/hyfetch", "ref": "b6288822eadcfe48ebae1aef504e69940e09401f", "upstream": "dylanaraps/neofetch", "kind": "component",
+     "evidence": "hyfetch ships a maintained copy of the neofetch script and says so in its README.", "terms": ["dylanaraps", "Dylan Araps"], "leaks": "The bundled script is literally named neofetch."},
+    {"id": "pip", "target": "pypa/pip", "ref": "ec43c48b2f2de7bfaac32bee85ee33a9e496db07", "upstream": "psf/requests", "kind": "component",
+     "evidence": "pip vendors requests under src/pip/_vendor/requests (vendor.txt).", "terms": ["Kenneth Reitz", "kennethreitz", "python-requests\\.org", "psf/requests"], "leaks": "Vendored directory is named requests."},
+    {"id": "yt-dlp", "target": "yt-dlp/yt-dlp", "ref": "b77c9304e1c4220cca450c583491904daf8455af", "upstream": "ytdl-org/youtube-dl", "kind": "project",
+     "evidence": "README describes yt-dlp as a fork of youtube-dl (via youtube-dlc).", "terms": ["ytdl-org", "youtube-dl", "youtube_dl", "youtube-dlc", "youtube_dlc", "blackjack4494", "Ricardo Garcia", "rg3"], "leaks": ""},
+    {"id": "valkey", "target": "valkey-io/valkey", "ref": "4693aa258e993ebde96f68f608224884e5c8317d", "upstream": "redis/redis", "kind": "project",
+     "evidence": "Valkey forked Redis 7.2.4 in March 2024; README declares it. Pinned one month after the fork.", "terms": ["redis/redis", "antirez", "Salvatore Sanfilippo", "Redis Ltd", "Redis Labs"], "leaks": "Early Valkey still uses redis identifiers throughout."},
+    {"id": "lodash", "target": "lodash/lodash", "ref": "7ccb038b6d6ebcb306715406f0d3d20676968967", "upstream": "jashkenas/underscore", "kind": "project",
+     "evidence": "Lo-Dash began as a fork of Underscore.js; early READMEs say so. Pinned May 2012.", "terms": ["jashkenas", "Jeremy Ashkenas", "underscore", "DocumentCloud"], "leaks": ""},
+    {"id": "gitea", "target": "go-gitea/gitea", "ref": "73710c00a838c0e743b955015958c0c678914290", "upstream": "gogs/gogs", "kind": "project",
+     "evidence": "Gitea forked Gogs in November 2016; README declares it. Pinned December 2016.", "terms": ["gogs", "gogits", "Unknwon", "Jiahua Chen"], "leaks": ""},
+    {"id": "pypdf", "target": "py-pdf/pypdf", "ref": "79d5b647c32ec4ad97ae6d5fd69baacbd7c495c4", "upstream": "mfenniak/pyPdf", "kind": "project",
+     "evidence": "PyPDF2 began as a fork of pyPdf; early README says so. Pinned February 2012.", "terms": ["mfenniak", "Mathieu Fenniak", "pyPdf"], "leaks": ""}
+  ]
+}

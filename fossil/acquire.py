@@ -39,7 +39,10 @@ def git(path: Path, *args: str, timeout: int = 60) -> str:
     env = dict(os.environ, GIT_TERMINAL_PROMPT="0", GIT_OPTIONAL_LOCKS="0", GIT_CONFIG_NOSYSTEM="1")
     # Ignore user filters, hooks, credentials and arbitrary URL rewrites for analysis.
     env["GIT_CONFIG_GLOBAL"] = os.devnull
-    cmd = ["git", "-c", "core.hooksPath=" + os.devnull, "-c", "core.fsmonitor=false", "-c", "core.untrackedCache=false", "-c", "protocol.file.allow=never", "-C", str(path), *args]
+    # Fossil never checks out a work tree, so NTFS path guards only block archiving on Windows;
+    # extract_zip applies its own path checks to everything written.
+    cmd = ["git", "-c", "core.hooksPath=" + os.devnull, "-c", "core.fsmonitor=false", "-c", "core.untrackedCache=false", "-c", "protocol.file.allow=never",
+           "-c", "core.protectNTFS=false", "-C", str(path), *args]
     try:
         p = subprocess.run(cmd, env=env, capture_output=True, timeout=timeout, check=True)
         return p.stdout.decode("utf-8", errors="replace")
@@ -57,15 +60,16 @@ def extract_zip(archive: Path, destination: Path) -> list[str]:
         # Validate all names before writing anything.
         for info in z.infolist():
             name = PurePosixPath(info.filename.replace("\\", "/"))
-            if name.is_absolute() or ".." in name.parts or any(":" in p for p in name.parts):
+            if name.is_absolute() or ".." in name.parts or (name.parts and re.fullmatch(r"[A-Za-z]:", name.parts[0])):
                 raise AcquisitionError("Unsafe ZIP path: " + info.filename)
-            total += info.file_size
-            if total > MAX_TOTAL:
-                raise AcquisitionError("ZIP exceeds expanded total (50 MB) limit")
         destination.mkdir(parents=True, exist_ok=True)
         for info in z.infolist():
             name = PurePosixPath(info.filename.replace("\\", "/"))
             if info.is_dir() or any(p in SKIP for p in name.parts):
+                continue
+            if any(re.search(r'[:<>"|?*\x00-\x1f]', p) for p in name.parts):
+                # Legal in Git, unwritable (or an alternate data stream) on Windows; skip, do not fail the snapshot.
+                warnings.append("Skipped name not portable to all filesystems: " + str(name))
                 continue
             if sensitive(Path(str(name))):
                 warnings.append("Skipped credential-like filename: " + str(name))
@@ -76,9 +80,20 @@ def extract_zip(archive: Path, destination: Path) -> list[str]:
             if stat.S_ISLNK(info.external_attr >> 16):
                 warnings.append("Skipped archive symlink: " + str(name))
                 continue
+            # Sample up to the snapshot budget rather than discarding a large repository outright.
+            # Reads are capped, so a header that understates a member's size cannot exceed the limits.
+            if total + info.file_size > MAX_TOTAL:
+                warnings.append("Acquisition limit: " + str(name))
+                continue
+            with z.open(info) as source:
+                data = source.read(MAX_FILE + 1)
+            if len(data) > MAX_FILE or total + len(data) > MAX_TOTAL:
+                warnings.append("Acquisition limit: " + str(name))
+                continue
+            total += len(data)
             p = destination.joinpath(*name.parts)
             p.parent.mkdir(parents=True, exist_ok=True)
-            p.write_bytes(z.read(info))
+            p.write_bytes(data)
     return warnings
 
 

@@ -20,6 +20,7 @@ def main(argv=None) -> int:
     run.add_argument("target")
     run.add_argument("--candidate", action="append", default=[], help="Optional candidate; repeatable")
     run.add_argument("--no-discovery", action="store_true", help="Only test explicit/prior candidates")
+    run.add_argument("--exclude", action="append", default=[], metavar="OWNER/REPO", help="Ignore this repository as a discovered lead; repeatable")
     run.add_argument("--case", type=Path, help="New, empty output directory")
     run.add_argument("--cache", type=Path, default=Path.home() / ".cache" / "fossil")
     run.add_argument("--max-candidates", type=int, default=4, choices=range(1, 11), metavar="1..10")
@@ -40,7 +41,8 @@ def main(argv=None) -> int:
             return 0
         if args.command == "replay":
             c = replay(args.case.resolve())
-            print(f"Verified case {c['id']}: snapshot hashes and {len(c['comparisons'])} comparisons reproduced offline.")
+            print(f"Verified case {c['id']}: snapshot hashes and {len(c['comparisons'])} comparisons reproduced offline."
+                  + (f" Note: {c['replay_note']}." if c["replay_note"] else ""))
             return 0
         if args.offline and args.refresh:
             parser.error("--offline and --refresh are mutually exclusive")
@@ -54,7 +56,7 @@ def main(argv=None) -> int:
             from .ai import Advisor
             ai = Advisor()
         case = investigate(args.target, args.candidate, path, discover=not args.no_discovery, client=client,
-                           max_candidates=args.max_candidates, ai=ai, follow_up=args.follow_up)
+                           max_candidates=args.max_candidates, ai=ai, follow_up=args.follow_up, exclude=args.exclude)
         print("Report:", path / "report.md")
         print("Evidence:", path / "case.json")
         for c in case["comparisons"]:

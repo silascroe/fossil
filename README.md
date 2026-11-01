@@ -38,6 +38,9 @@ fossil investigate ./project.zip --case ./cases/archive
 # Follow a historical lead or pin an exact input revision.
 fossil investigate django-q2/django-q2 --candidate althonos/pronto@3384010dfb4fc7c66a219f59276adef3288a886b --no-discovery --case ./cases/queue
 
+# Ignore a repository you already know about (for example the target's own public copy).
+fossil investigate ./project.zip --exclude owner/project --case ./cases/unknown-origin
+
 # Revisit old hypotheses, compare changed findings, retain the original case.
 fossil investigate django-q2/django-q2 --follow-up ./cases/django-q2 --refresh --case ./cases/django-q2-followup
 
@@ -47,7 +50,7 @@ fossil history
 fossil history --cases ./cases
 ```
 
-GitHub inputs accept `owner/repo`, `https://github.com/owner/repo`, and an optional `@commit-or-tag`. Private remote Git authentication is not built into v0.1; investigate a local checkout instead. Local input includes tracked and unignored working files and records whether the worktree is dirty. Symlinks are never followed. Git submodules are not fetched.
+GitHub inputs accept `owner/repo`, `https://github.com/owner/repo`, and an optional `@commit-or-tag`. Private remote Git authentication is not built in; investigate a local checkout instead. Local input includes tracked and unignored working files and records whether the worktree is dirty. Symlinks are never followed. Git submodules are not fetched.
 
 Git history is collected only when the input directory is a repository root. Nested directories are inspected as files without inheriting an enclosing repository's history; this limitation is recorded in the case.
 
@@ -70,7 +73,7 @@ fossil investigate owner/repository --max-candidates 4
 ## What the investigator actually does
 
 1. **Preserve:** acquire a Git snapshot without checkout hooks/filters, or copy a local working tree/ZIP into the case. Record file hashes, revisions, dirty/shallow state, sampled commit IDs/dates, license notices, direct dependencies, and exclusions.
-2. **Hypothesize:** extract fork metadata, contextual repository acknowledgements (including commit-pinned source comments), distinctive symbols, and README terms. Search GitHub with target-derived queries. Rank documentary leads above generic search hits; record the origin of every candidate.
+2. **Hypothesize:** extract fork metadata, contextual repository acknowledgements (including commit-pinned source comments), and README terms. For code search, take names *defined* in the largest core source files (not imports, tests or build scripts) and search two names from the same file together, since copied code keeps a file's definitions together and generic vocabulary rarely does. Rank the target's own acknowledgements above search hits and credits found inside vendored, test or generated files below them (those describe bundled code, not the target). Rank a repository returned by several independent code searches above single hits; record the origin of every candidate.
 3. **Test:** index 25-token shingles across filenames, shortlist at most 60 file pairs, then examine exact/normalized source or contiguous token blocks. Retain blocks of at least 80 tokens, 16 distinct identifier-like tokens, and 5 lines. Python parsing removes docstrings and normalizes quote style; other languages use a heuristic lexer. Identifiers are preserved.
 4. **Assess:** separate raw lexical evidence from scope and direction. Shared commits establish shared history. Fork metadata is a declaration. Source overlap corroborates an affirmative attribution; a source-file/component attribution does not turn into whole-project ancestry. Vendored, generated, test, and example matches remain visible. Negative/instructional statements do not establish derivation.
 5. **Remember:** save findings, rejected/unexamined leads, search failures, method parameters and snapshots. Follow-up cases revisit old candidates and summarize changed verdicts without overwriting the original.
@@ -105,16 +108,16 @@ snapshots/candidate-N/  preserved candidate inputs
 
 GitHub source links use full commit hashes and line ranges. Local/ZIP evidence links point into the preserved case. Reports give examples, overlap fingerprints, observed chronology, license paths, shared dependencies, alternative explanations, confidence labels, and failed/skipped operations. Confidence describes the strength of specific evidence, not a calibrated ancestry probability.
 
-Replay rebuilds snapshot-derived inventories and documentary evidence, checks hashes and method parameters, and recomputes comparisons. It detects modified snapshots or inconsistent claims. It is **not** a cryptographic signature over the editable GitHub metadata/history ledger and cannot certify historical truth or search completeness.
+Replay rebuilds snapshot-derived inventories and documentary evidence, checks hashes and method parameters, and recomputes comparisons. It detects modified snapshots or inconsistent claims. Search hints (`symbols`, `search_terms`) are not compared, because they steer discovery rather than verdicts and may improve between versions. A case made by an older Fossil replays under a newer one only if every recomputed inventory and verdict still matches; the output names both versions, and any divergence fails. It is **not** a cryptographic signature over the editable GitHub metadata/history ledger and cannot certify historical truth or search completeness.
 
 The three real demonstrations and exact revision/evidence links are in [docs/demonstration.md](docs/demonstration.md). Their full replayable cases are bundled in [examples/cases.zip](examples/cases.zip); extract it into the examples directory before running the documented replay commands. Markdown report copies and ledgers remain directly readable alongside the bundle. Third-party source snapshots retain their projects' license/notice files; they are evidence, not Fossil implementation.
 
 ## Limits worth knowing
 
 - This is lexical archaeology, not a semantic equivalence prover. Heavy rewrites, translations, short snippets, renamed identifiers, and undocumented conceptual influences can be missed. Provenance language is heuristic, including negation/scope handling; inspect the quoted statement.
-- Discovery is bounded, search-index dependent, and not exhaustive. The live demo demonstrates independently discovered **documented** ancestry and a less obvious component attribution; it does not validate reliable hidden-ancestry discovery from code search without acknowledgements.
-- Git history is cloned at depth 200; at most 500 reachable commits are sampled. A shallow boundary is not an origin date. Dates can be rewritten; repository creation does not prove code publication. v0.1 does not search every past revision or perform line-by-line historical origin tracing.
-- Files over 1 MB are skipped; snapshots are limited to 50 MB/10,000 entries. ZIPs exceeding the total expanded-size/entry limits are rejected. Binary/non-UTF-8 files, common build/dependency directories, and submodules are excluded. Source sampling is capped at 30,000 tokens/file and 200,000 tokens/snapshot, in deterministic path order. These exclusions reduce recall.
+- Discovery is bounded, search-index dependent, and not exhaustive. How well it finds ancestry *without* acknowledgements is measured in [bench/](bench/README.md), with the results and their limits in [bench/RESULTS.md](bench/RESULTS.md).
+- Git history is cloned at depth 200; at most 500 reachable commits are sampled. A shallow boundary is not an origin date. Dates can be rewritten; repository creation does not prove code publication. Fossil does not search every past revision or perform line-by-line historical origin tracing.
+- Files over 1 MB are skipped. Snapshots larger than 50 MB are sampled up to that limit, and every skipped file is recorded; ZIPs over 10,000 entries are rejected. Names that some filesystems cannot store (for example containing `:`) are skipped. Binary/non-UTF-8 files, common build/dependency directories, and submodules are excluded. Source sampling is capped at 30,000 tokens/file and 200,000 tokens/snapshot; application files receive the budget before vendored, test and generated files. Extensionless scripts count as source when they start with a shebang. These exclusions reduce recall.
 - Expensive modified-file diffs are skipped when estimated token-equality work exceeds 500,000. Exact/normalized equality has a fast path. Every skipped pair is recorded. Coverage uses only eligible analyzed application files; it is not percentage of the entire repository copied.
 - Dependency extraction covers package.json, pyproject.toml direct dependencies, requirements text, Cargo.toml and go.mod. It does not resolve full dependency graphs or execute setup/build scripts. Vendoring/context labels are heuristic.
 - Common credential filenames and Git-ignored local files are excluded. This is not comprehensive secret scanning. Cases still contain source text and may be private; review before sharing.

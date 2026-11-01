@@ -22,7 +22,7 @@ def save(case: dict, path: Path) -> None:
     (path / "report.md").write_text(render(case), encoding="utf-8")
 
 
-def investigate(target: str, candidates: list[str], path: Path, *, discover: bool = False, client=None, max_candidates: int = 4, ai=None, follow_up: Path | None = None) -> dict:
+def investigate(target: str, candidates: list[str], path: Path, *, discover: bool = False, client=None, max_candidates: int = 4, ai=None, follow_up: Path | None = None, exclude: list[str] = ()) -> dict:
     if path.exists() and any(path.iterdir()):
         raise AcquisitionError("Case directory is not empty; choose a new case directory to preserve prior evidence")
     path.mkdir(parents=True, exist_ok=True)
@@ -62,7 +62,7 @@ def investigate(target: str, candidates: list[str], path: Path, *, discover: boo
         if client is None:
             raise AcquisitionError("Discovery requires a GitHub client")
         from .discovery import find_candidates
-        found, trail = find_candidates(case["target"], inventories["target"], client, ai=ai)
+        found, trail = find_candidates(case["target"], inventories["target"], client, ai=ai, exclude={x.lower() for x in exclude})
         case["discovery"] = trail
         for name, reasons in found.items():
             leads.setdefault(name, []).extend(reasons)
@@ -99,11 +99,12 @@ def investigate(target: str, candidates: list[str], path: Path, *, discover: boo
 
 def replay(path: Path) -> dict:
     case = json.loads((path / "case.json").read_text(encoding="utf-8"))
-    if case["version"] != __version__:
-        raise AcquisitionError("Replay requires matching Fossil version: " + case["version"])
+    # Everything below is recomputed and compared, so a newer version may verify an older case;
+    # any divergence still fails, and the message names both versions.
+    note = "" if case["version"] == __version__ else f" (case created by Fossil {case['version']}, replayed with {__version__})"
     expected = {"shingle_tokens": SHINGLE, "min_match_tokens": MIN_MATCH, "max_pairs": MAX_PAIRS, "max_diff_work": MAX_DIFF_WORK, "max_file_tokens": MAX_FILE_TOKENS, "max_total_tokens": MAX_TOTAL_TOKENS}
     if any(case.get("parameters", {}).get(k) != v for k, v in expected.items()):
-        raise AcquisitionError("Replay method parameters do not match this Fossil version")
+        raise AcquisitionError("Replay method parameters do not match this Fossil version" + note)
     # Never follow snapshot paths from an untrusted ledger outside the case.
     def load(item):
         root = (path / item["snapshot"]).resolve()
@@ -112,8 +113,10 @@ def replay(path: Path) -> dict:
         inv = inspect(root)
         if inv["digest"] != item["inventory"]["digest"]:
             raise AcquisitionError("Snapshot integrity check failed: " + item["input"])
-        if public_inventory(inv) != item["inventory"]:
-            raise AcquisitionError("Snapshot-derived inventory does not match case ledger: " + item["input"])
+        # Search hints steer discovery, not verdicts; they may improve between versions.
+        hints = {"symbols", "search_terms"}
+        if {k: v for k, v in public_inventory(inv).items() if k not in hints} != {k: v for k, v in item["inventory"].items() if k not in hints}:
+            raise AcquisitionError("Snapshot-derived inventory does not match case ledger: " + item["input"] + note)
         return inv
     target = load(case["target"])
     from .assessment import assess
@@ -122,5 +125,6 @@ def replay(path: Path) -> dict:
         new = assess(compare(target, candidate), {**case["target"], "inventory": public_inventory(target)}, {**old["candidate"], "inventory": public_inventory(candidate)})
         for key in ("verdict", "direction", "matches", "application_token_coverage", "confidence", "documentary", "scope", "skipped_pairs"):
             if new[key] != old[key]:
-                raise AcquisitionError("Replay mismatch: " + key)
+                raise AcquisitionError("Replay mismatch: " + key + note)
+    case["replay_note"] = note.strip(" ()")
     return case

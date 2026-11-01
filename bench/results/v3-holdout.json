@@ -1,0 +1,530 @@
+{
+ "tag": "v3",
+ "scored_at": "2026-11-01T18:56:56.791707+00:00",
+ "rows": [
+  {
+   "id": "searxng",
+   "kind": "project",
+   "condition": "intact",
+   "upstream": "searx/searx",
+   "lead_rank": 1,
+   "lead_count": 24,
+   "lead_provenance": [
+    "Target reference at AUTHORS.rst:1: searxng is a fork from `searx <https://github.com/searx/searx>`_ and is",
+    "Target reference at searx/templates/__common__/about.html:5:     SearXNG is a fork from the well-known <a href=\"https://github.com/searx/searx\">searx</a>",
+    "Target reference at searxng_extra/update/update_pygments.py:23:     based on https://github.com/searx/searx/blob/2a5c39e33c3306ca17e09211fbf5a0f785cb10c8/searx/static/themes/oscar/less/logicodev/code.less",
+    "GitHub repositories search: searx in:name; https://github.com/searx/searx",
+    "Target reference at README.rst:66: .. _searx: https://github.com/searx/searx",
+    "Target reference at CHANGELOG.rst:304:  - Tons of accessibility fixes - see https://github.com/searx/searx/issues/350 for details",
+    "Target reference at CHANGELOG.rst:428:   - https://github.com/searx/searx/issues/1088",
+    "Target reference at CHANGELOG.rst:429:   - https://github.com/searx/searx/issues/1089"
+   ],
+   "upstream_verdict": "corroborated_derivation",
+   "upstream_coverage": 0.2047,
+   "upstream_matches": 111,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "cofebe/searx",
+     "verdict": "code_overlap",
+     "coverage": 0.2594,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "tkmatrix/searxng",
+     "verdict": "code_overlap",
+     "coverage": 0.261,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"callbackSafe\" \"isElementInDetail\"",
+     "status": "0 results"
+    },
+    {
+     "query": "\"_get_translations\" \"_get_browser_language\"",
+     "status": "0 results"
+    },
+    {
+     "query": "\"install_check\" \"update_searx\"",
+     "status": "2 results"
+    }
+   ],
+   "target_source_files": 220,
+   "target_token_warnings": 33
+  },
+  {
+   "id": "searxng",
+   "kind": "project",
+   "condition": "stripped",
+   "upstream": "searx/searx",
+   "lead_rank": null,
+   "lead_count": 12,
+   "lead_provenance": [],
+   "upstream_verdict": null,
+   "upstream_coverage": null,
+   "upstream_matches": null,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "cofebe/searx",
+     "verdict": "code_overlap",
+     "coverage": 0.2632,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "tkmatrix/searxng",
+     "verdict": "code_overlap",
+     "coverage": 0.2648,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"callbackSafe\" \"isElementInDetail\"",
+     "status": "0 results"
+    },
+    {
+     "query": "\"_get_translations\" \"_get_browser_language\"",
+     "status": "0 results"
+    },
+    {
+     "query": "\"install_check\" \"update_searx\"",
+     "status": "2 results"
+    }
+   ],
+   "target_source_files": 219,
+   "target_token_warnings": 33
+  },
+  {
+   "id": "flask-security",
+   "kind": "project",
+   "condition": "intact",
+   "upstream": "pallets-eco/flask-security-3.0",
+   "lead_rank": null,
+   "lead_count": 24,
+   "lead_provenance": [],
+   "upstream_verdict": null,
+   "upstream_coverage": null,
+   "upstream_matches": null,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "harmannkibue/flask-security-patch",
+     "verdict": "code_overlap",
+     "coverage": 0.346,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"_base_render_json\" \"default_render_json\"",
+     "status": "0 results"
+    },
+    {
+     "query": "\"_user_loader\" \"_request_loader\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"find_csrf_field_name\" \"verify_password\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 46,
+   "target_token_warnings": 0
+  },
+  {
+   "id": "flask-security",
+   "kind": "project",
+   "condition": "stripped",
+   "upstream": "pallets-eco/flask-security-3.0",
+   "lead_rank": null,
+   "lead_count": 24,
+   "lead_provenance": [],
+   "upstream_verdict": null,
+   "upstream_coverage": null,
+   "upstream_matches": null,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "harmannkibue/flask-security-patch",
+     "verdict": "code_overlap",
+     "coverage": 0.3207,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"_user_loader\" \"_request_loader\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"_base_render_json\" \"default_render_json\"",
+     "status": "0 results"
+    },
+    {
+     "query": "\"find_csrf_field_name\" \"verify_password\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 45,
+   "target_token_warnings": 0
+  },
+  {
+   "id": "pillow-simd",
+   "kind": "project",
+   "condition": "intact",
+   "upstream": "python-pillow/Pillow",
+   "lead_rank": 5,
+   "lead_count": 24,
+   "lead_provenance": [
+    "GitHub code search: \"PyImagingNew\" \"PyImaging_AsImaging\"; https://github.com/python-pillow/Pillow/blob/658c4f92e361eac50147e6cf72e4bd14188364f6/src/_imaging.c",
+    "Target reference at README.md:123:   [original-issues]: https://github.com/python-pillow/Pillow/issues/new",
+    "Target reference at README.md:124:   [original-changelog]: https://github.com/python-pillow/Pillow/blob/master/CHANGES.rst",
+    "Target reference at README.md:125:   [original-contribute]: https://github.com/python-pillow/Pillow/blob/master/.github/CONTRIBUTING.md",
+    "Target reference at wheels/README.md:32: [GitHub Actions artifacts created for tags, relevant changes or manual builds](https://github.com/python-pillow/Pillow/actions/workflows/wheels.yml).",
+    "Target reference at winbuild/README.md:6: * See [Current Windows Build/Testing process (Pillow#553)](https://github.com/python-pillow/Pillow/issues/553#issuecomment-37877416),",
+    "Target reference at winbuild/README.md:8:   [Test Windows with GitHub Actions (Pillow#4084)](https://github.com/python-pillow/Pillow/pull/4084).",
+    "Target reference at .github/CONTRIBUTING.md:21: - Include [release notes](https://github.com/python-pillow/Pillow/tree/main/docs/releasenotes) as needed or appropriate with your bug fixes, feature additions and tests."
+   ],
+   "upstream_verdict": null,
+   "upstream_coverage": null,
+   "upstream_matches": null,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "creativedesigner3d/home_builder",
+     "verdict": "code_overlap",
+     "coverage": 0.0098,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "b-init/printnodes",
+     "verdict": "code_overlap",
+     "coverage": 0.0461,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "pexip/os-pillow",
+     "verdict": "code_overlap",
+     "coverage": 0.2877,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"PyImagingNew\" \"PyImaging_AsImaging\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"DecompressionBombWarning\" \"DecompressionBombError\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"_limit_rational\" \"_limit_signed_rational\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 153,
+   "target_token_warnings": 288
+  },
+  {
+   "id": "pillow-simd",
+   "kind": "project",
+   "condition": "stripped",
+   "upstream": "python-pillow/Pillow",
+   "lead_rank": 4,
+   "lead_count": 24,
+   "lead_provenance": [
+    "GitHub code search: \"PyImagingNew\" \"PyImaging_AsImaging\"; https://github.com/python-pillow/Pillow/blob/658c4f92e361eac50147e6cf72e4bd14188364f6/src/_imaging.c"
+   ],
+   "upstream_verdict": "code_overlap",
+   "upstream_coverage": 0.2982,
+   "upstream_matches": 114,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "creativedesigner3d/home_builder",
+     "verdict": "code_overlap",
+     "coverage": 0.0098,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "b-init/printnodes",
+     "verdict": "code_overlap",
+     "coverage": 0.0456,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "pexip/os-pillow",
+     "verdict": "code_overlap",
+     "coverage": 0.282,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"PyImagingNew\" \"PyImaging_AsImaging\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"DecompressionBombWarning\" \"DecompressionBombError\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"_limit_rational\" \"_limit_signed_rational\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 144,
+   "target_token_warnings": 285
+  },
+  {
+   "id": "postman-request",
+   "kind": "project",
+   "condition": "intact",
+   "upstream": "request/request",
+   "lead_rank": 1,
+   "lead_count": 24,
+   "lead_provenance": [
+    "Target reference at CHANGELOG.md:157: - [#1906](https://github.com/request/request/pull/1906) Update README URLs based on HTTP redirects (@ReadmeCritic)",
+    "Target reference at CHANGELOG.md:527: - [#815](https://github.com/request/request/pull/815) Create changelog based on pull requests (@lalitkapoor)",
+    "GitHub code search: \"filterForNonReserved\" \"filterOutReservedFunctions\"; https://github.com/request/request/blob/3c0cddc7c8eb60b470e9519da85896ed7ee0081e/request.js",
+    "GitHub repositories search: Request Simplified HTTP in:name,description,readme; https://github.com/request/request",
+    "GitHub repositories search: request in:name; https://github.com/request/request",
+    "Target reference at README.md:10: - Exception handling for large form-data: https://github.com/request/request/issues/1561",
+    "Target reference at README.md:6: - Handling of old-style deflate responses: https://github.com/request/request/issues/2197",
+    "Target reference at README.md:8: - Redirect behavior for 307 responses when Host header is set: https://github.com/request/request/issues/2666"
+   ],
+   "upstream_verdict": "corroborated_component",
+   "upstream_coverage": 0.214,
+   "upstream_matches": 95,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "brookshi/hitchhiker",
+     "verdict": "code_overlap",
+     "coverage": 0.0666,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"filterForNonReserved\" \"filterOutReservedFunctions\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"httpOptionsToUri\" \"Http2Request\"",
+     "status": "1 results"
+    },
+    {
+     "query": "\"MultiProtocolRequest\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 138,
+   "target_token_warnings": 0
+  },
+  {
+   "id": "postman-request",
+   "kind": "project",
+   "condition": "stripped",
+   "upstream": "request/request",
+   "lead_rank": 2,
+   "lead_count": 24,
+   "lead_provenance": [
+    "GitHub code search: \"filterForNonReserved\" \"filterOutReservedFunctions\"; https://github.com/request/request/blob/3c0cddc7c8eb60b470e9519da85896ed7ee0081e/request.js"
+   ],
+   "upstream_verdict": "code_overlap",
+   "upstream_coverage": 0.214,
+   "upstream_matches": 96,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "brookshi/hitchhiker",
+     "verdict": "code_overlap",
+     "coverage": 0.0666,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"filterForNonReserved\" \"filterOutReservedFunctions\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"httpOptionsToUri\" \"Http2Request\"",
+     "status": "1 results"
+    },
+    {
+     "query": "\"MultiProtocolRequest\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 138,
+   "target_token_warnings": 0
+  },
+  {
+   "id": "bbolt",
+   "kind": "project",
+   "condition": "intact",
+   "upstream": "boltdb/bolt",
+   "lead_rank": null,
+   "lead_count": 24,
+   "lead_provenance": [],
+   "upstream_verdict": null,
+   "upstream_coverage": null,
+   "upstream_matches": null,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [],
+   "code_searches": [
+    {
+     "query": "\"BenchmarkBucket_CreateBucketIfNotExists\" \"ExampleBucket_Put\"",
+     "status": "8 results"
+    },
+    {
+     "query": "\"fillDBWithKeys\" \"createFilledDB\"",
+     "status": "4 results"
+    },
+    {
+     "query": "\"ExampleTx_Rollback\" \"ExampleTx_CopyFile\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 125,
+   "target_token_warnings": 0
+  },
+  {
+   "id": "bbolt",
+   "kind": "project",
+   "condition": "stripped",
+   "upstream": "boltdb/bolt",
+   "lead_rank": null,
+   "lead_count": 24,
+   "lead_provenance": [],
+   "upstream_verdict": null,
+   "upstream_coverage": null,
+   "upstream_matches": null,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "openkvlab/boltdb",
+     "verdict": "code_overlap",
+     "coverage": 0.2763,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "aperturerobotics/bbolt",
+     "verdict": "code_overlap",
+     "coverage": 0.2604,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"BenchmarkBucket_CreateBucketIfNotExists\" \"ExampleBucket_Put\"",
+     "status": "8 results"
+    },
+    {
+     "query": "\"fillDBWithKeys\" \"createFilledDB\"",
+     "status": "4 results"
+    },
+    {
+     "query": "\"ExampleTx_Rollback\" \"ExampleTx_CopyFile\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 125,
+   "target_token_warnings": 0
+  },
+  {
+   "id": "mlua",
+   "kind": "project",
+   "condition": "intact",
+   "upstream": "mlua-rs/rlua",
+   "lead_rank": 1,
+   "lead_count": 24,
+   "lead_provenance": [
+    "Target reference at README.md:13: A fork of [rlua 0.15](https://github.com/kyren/rlua/tree/0.15.3) which provides a high level"
+   ],
+   "upstream_verdict": "component_overlap",
+   "upstream_coverage": 0.0,
+   "upstream_matches": 5,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "sdleffler/hv-lua",
+     "verdict": "code_overlap",
+     "coverage": 0.2395,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "cheesycod/mlua",
+     "verdict": "code_overlap",
+     "coverage": 0.0787,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"init_from_ptr\" \"gc_is_running\"",
+     "status": "9 results"
+    },
+    {
+     "query": "\"assert_stack\" \"protect_lua_closure\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"create_function\" \"create_function_mut\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 49,
+   "target_token_warnings": 0
+  },
+  {
+   "id": "mlua",
+   "kind": "project",
+   "condition": "stripped",
+   "upstream": "mlua-rs/rlua",
+   "lead_rank": null,
+   "lead_count": 24,
+   "lead_provenance": [],
+   "upstream_verdict": null,
+   "upstream_coverage": null,
+   "upstream_matches": null,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "sdleffler/hv-lua",
+     "verdict": "code_overlap",
+     "coverage": 0.2395,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "cheesycod/mlua",
+     "verdict": "code_overlap",
+     "coverage": 0.0787,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"init_from_ptr\" \"gc_is_running\"",
+     "status": "9 results"
+    },
+    {
+     "query": "\"assert_stack\" \"protect_lua_closure\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"create_function\" \"create_function_mut\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 49,
+   "target_token_warnings": 0
+  }
+ ]
+}

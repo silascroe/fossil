@@ -90,6 +90,20 @@ class CoreTests(unittest.TestCase):
         with self.assertRaises(AcquisitionError):
             extract_zip(z, self.root / "out")
         self.assertFalse((self.root / "escape.py").exists())
+        drive = self.root / "drive.zip"
+        with zipfile.ZipFile(drive, "w") as f:
+            f.writestr("C:/evil.py", CODE)
+        with self.assertRaises(AcquisitionError):
+            extract_zip(drive, self.root / "drive-out")
+        # Git allows names Windows cannot store; skip them instead of failing the whole snapshot.
+        portable = self.root / "portable.zip"
+        with zipfile.ZipFile(portable, "w") as f:
+            f.writestr("conf/site.conf:filtron", "x")
+            f.writestr("engine.py", CODE)
+        warnings = extract_zip(portable, self.root / "portable-out")
+        self.assertTrue((self.root / "portable-out" / "engine.py").is_file())
+        self.assertFalse((self.root / "portable-out" / "conf").exists())
+        self.assertTrue(any("not portable" in w for w in warnings))
         from fossil.inventory import inspect
         p = self.project("a")
         try:

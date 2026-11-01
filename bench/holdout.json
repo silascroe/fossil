@@ -1,0 +1,17 @@
+{
+  "note": "Holdout pairs chosen after the baseline run and before any rerun. Discovery changes were not tuned against these. Same format as pairs.json.",
+  "pairs": [
+    {"id": "searxng", "target": "searxng/searxng", "ref": "eb7ccb7e79c8dcd6dbe8a2c848a57a2df0330e55", "upstream": "searx/searx", "kind": "project",
+     "evidence": "SearXNG forked searx in 2021; README declares it. Pinned November 2021.", "terms": ["searx/searx", "asciimoo", "Adam Tauber"], "leaks": "Package is still named searx."},
+    {"id": "flask-security", "target": "pallets-eco/flask-security", "ref": "69b384953baeba633f3fcb454f3a84dc96a8635a", "upstream": "pallets-eco/flask-security-3.0", "kind": "project",
+     "evidence": "Flask-Security-Too forked mattupstate/flask-security (now pallets-eco/flask-security-3.0); README declares it. Pinned November 2019.", "terms": ["mattupstate", "Matt Wright", "flask-security-3\\.0"], "leaks": "Package is still named flask_security."},
+    {"id": "pillow-simd", "target": "uploadcare/pillow-simd", "ref": "788bf910ffc95197e2a300589a47eb4d16e70e2d", "upstream": "python-pillow/Pillow", "kind": "project",
+     "evidence": "GitHub fork of python-pillow/Pillow; README declares it.", "terms": ["python-pillow", "Alex Clark", "Fredrik Lundh", "Secret Labs"], "leaks": "Package is still named PIL."},
+    {"id": "postman-request", "target": "postmanlabs/postman-request", "ref": "8b5be6d321ef3be76ba9b99cdfbede1e35150154", "upstream": "request/request", "kind": "project",
+     "evidence": "GitHub fork of request/request; README declares it.", "terms": ["request/request", "Mikeal Rogers", "mikeal"], "leaks": "The word 'request' is everywhere."},
+    {"id": "bbolt", "target": "etcd-io/bbolt", "ref": "a4ef19710eb7ddc41fd1155336baf331b5c57ba8", "upstream": "boltdb/bolt", "kind": "project",
+     "evidence": "bbolt is etcd's fork of boltdb/bolt; README declares it.", "terms": ["boltdb", "Ben Johnson", "benbjohnson"], "leaks": ""},
+    {"id": "mlua", "target": "mlua-rs/mlua", "ref": "c9c8f983e06c2475736608891b11a285a696c41b", "upstream": "mlua-rs/rlua", "kind": "project",
+     "evidence": "mlua began as a fork of rlua; early README says so. Pinned November 2019.", "terms": ["rlua", "kyren", "amethyst", "chucklefish"], "leaks": ""}
+  ]
+}

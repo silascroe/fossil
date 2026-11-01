@@ -1,0 +1,1052 @@
+{
+ "tag": "v3",
+ "scored_at": "2026-11-01T18:56:56.362529+00:00",
+ "rows": [
+  {
+   "id": "django-q2",
+   "kind": "project",
+   "condition": "intact",
+   "upstream": "Koed00/django-q",
+   "lead_rank": 1,
+   "lead_count": 24,
+   "lead_provenance": [
+    "Target reference at README.rst:6: Django Q2 is a fork of Django Q. Big thanks to Ilan Steemers for starting this project. Unfortunately, development has stalled since June 2021. Django Q2 is the new updated version of Django Q, with dependencies updates,",
+    "Target reference at docs/index.rst:11:     Django Q2 is a fork of Django Q. Big thanks to Ilan Steemers for starting this project. Unfortunately, development of Django Q has stalled since June 2021. Django Q2 is the new updated version of Django Q, with depen",
+    "GitHub code search: \"get_result_group\" \"group_result\"; https://github.com/Koed00/django-q/blob/85baaccd2c3adfe0a414d4237465163e9ff6e5a0/django_q/models.py",
+    "GitHub code search: \"get_process_mb\"; https://github.com/Koed00/django-q/blob/85baaccd2c3adfe0a414d4237465163e9ff6e5a0/django_q/monitor.py",
+    "GitHub code search: \"result_cached\" \"result_group\"; https://github.com/Koed00/django-q/blob/85baaccd2c3adfe0a414d4237465163e9ff6e5a0/django_q/tasks.py",
+    "GitHub repositories search: django-q in:name; https://github.com/Koed00/django-q",
+    "Target reference at CHANGELOG.md:1003: - v0.5.3 [\\#49](https://github.com/Koed00/django-q/pull/49) ([Koed00](https://github.com/Koed00))",
+    "Target reference at CHANGELOG.md:1004: - adds `catch_up` configuration option [\\#48](https://github.com/Koed00/django-q/pull/48) ([Koed00](https://github.com/Koed00))"
+   ],
+   "upstream_verdict": "corroborated_derivation",
+   "upstream_coverage": 0.3209,
+   "upstream_matches": 49,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "althonos/pronto",
+     "verdict": "corroborated_component",
+     "coverage": 0.0032,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"result_cached\" \"result_group\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"get_process_mb\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"get_result_group\" \"group_result\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 69,
+   "target_token_warnings": 0
+  },
+  {
+   "id": "django-q2",
+   "kind": "project",
+   "condition": "stripped",
+   "upstream": "Koed00/django-q",
+   "lead_rank": 1,
+   "lead_count": 23,
+   "lead_provenance": [
+    "GitHub code search: \"get_result_group\" \"group_result\"; https://github.com/Koed00/django-q/blob/85baaccd2c3adfe0a414d4237465163e9ff6e5a0/django_q/models.py",
+    "GitHub code search: \"get_process_mb\"; https://github.com/Koed00/django-q/blob/85baaccd2c3adfe0a414d4237465163e9ff6e5a0/django_q/monitor.py",
+    "GitHub code search: \"result_cached\" \"result_group\"; https://github.com/Koed00/django-q/blob/85baaccd2c3adfe0a414d4237465163e9ff6e5a0/django_q/tasks.py"
+   ],
+   "upstream_verdict": "code_overlap",
+   "upstream_coverage": 0.3104,
+   "upstream_matches": 48,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [],
+   "code_searches": [
+    {
+     "query": "\"result_cached\" \"result_group\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"get_process_mb\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"get_result_group\" \"group_result\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 68,
+   "target_token_warnings": 0
+  },
+  {
+   "id": "flask-caching",
+   "kind": "project",
+   "condition": "intact",
+   "upstream": "thadeusb/flask-cache",
+   "lead_rank": 1,
+   "lead_count": 24,
+   "lead_provenance": [
+    "Target reference at README.md:3: A fork of the [Flask-Cache](https://github.com/thadeusb/flask-cache) extension",
+    "GitHub repositories search: Flask-Caching in:name,description,readme; https://github.com/thadeusb/flask-cache",
+    "GitHub repositories search: flask-cache in:name; https://github.com/thadeusb/flask-cache"
+   ],
+   "upstream_verdict": "corroborated_derivation",
+   "upstream_coverage": 0.0118,
+   "upstream_matches": 2,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [],
+   "code_searches": [
+    {
+     "query": "\"_BoundCachedFunction\" \"_CachedFunction\"",
+     "status": "2 results"
+    },
+    {
+     "query": "\"RedisSentinelCache\" \"RedisClusterCache\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"normalize_timeout\" \"wants_extra_args\"",
+     "status": "2 results"
+    }
+   ],
+   "target_source_files": 32,
+   "target_token_warnings": 0
+  },
+  {
+   "id": "flask-caching",
+   "kind": "project",
+   "condition": "stripped",
+   "upstream": "thadeusb/flask-cache",
+   "lead_rank": null,
+   "lead_count": 19,
+   "lead_provenance": [],
+   "upstream_verdict": null,
+   "upstream_coverage": null,
+   "upstream_matches": null,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [],
+   "code_searches": [
+    {
+     "query": "\"_BoundCachedFunction\" \"_CachedFunction\"",
+     "status": "2 results"
+    },
+    {
+     "query": "\"RedisSentinelCache\" \"RedisClusterCache\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"normalize_timeout\" \"wants_extra_args\"",
+     "status": "2 results"
+    }
+   ],
+   "target_source_files": 31,
+   "target_token_warnings": 0
+  },
+  {
+   "id": "flask-restx",
+   "kind": "project",
+   "condition": "intact",
+   "upstream": "noirbizarre/flask-restplus",
+   "lead_rank": 1,
+   "lead_count": 24,
+   "lead_provenance": [
+    "Target reference at README.rst:28: Flask-RESTX is a community driven fork of `Flask-RESTPlus <https://github.com/noirbizarre/flask-restplus>`_.",
+    "GitHub code search: \"_complete_url\" \"_register_apidoc\"; https://github.com/noirbizarre/flask-restplus/blob/1fe65ddae4c04315bd88535e3c2eaff381436270/flask_restplus/api.py",
+    "GitHub code search: \"MarshallingError\" \"is_indexable_but_not_string\"; https://github.com/noirbizarre/flask-restplus/blob/1fe65ddae4c04315bd88535e3c2eaff381436270/flask_restplus/fields.py",
+    "GitHub code search: \"extract_path\" \"extract_path_params\"; https://github.com/noirbizarre/flask-restplus/blob/1fe65ddae4c04315bd88535e3c2eaff381436270/flask_restplus/swagger.py",
+    "GitHub repositories search: flask-restplus in:name; https://github.com/noirbizarre/flask-restplus",
+    "Target reference at CHANGELOG.rst:360:    * Fix exceptions/error handling bugs https://github.com/noirbizarre/flask-restplus/pull/706/files noirbizarre/flask-restplus#741",
+    "Target reference at doc/index.rst:16: <https://github.com/noirbizarre/flask-restplus>`_",
+    "Target reference at doc/index.rst:24: `a long time <https://github.com/noirbizarre/flask-restplus/issues/593>`_."
+   ],
+   "upstream_verdict": "corroborated_derivation",
+   "upstream_coverage": 0.3314,
+   "upstream_matches": 78,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "yuanbaonet/baoaiback",
+     "verdict": "code_overlap",
+     "coverage": 0.3055,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"extract_path\" \"extract_path_params\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"MarshallingError\" \"is_indexable_but_not_string\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"_complete_url\" \"_register_apidoc\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 57,
+   "target_token_warnings": 0
+  },
+  {
+   "id": "flask-restx",
+   "kind": "project",
+   "condition": "stripped",
+   "upstream": "noirbizarre/flask-restplus",
+   "lead_rank": 1,
+   "lead_count": 24,
+   "lead_provenance": [
+    "GitHub code search: \"_complete_url\" \"_register_apidoc\"; https://github.com/noirbizarre/flask-restplus/blob/1fe65ddae4c04315bd88535e3c2eaff381436270/flask_restplus/api.py",
+    "GitHub code search: \"MarshallingError\" \"is_indexable_but_not_string\"; https://github.com/noirbizarre/flask-restplus/blob/1fe65ddae4c04315bd88535e3c2eaff381436270/flask_restplus/fields.py",
+    "GitHub code search: \"extract_path\" \"extract_path_params\"; https://github.com/noirbizarre/flask-restplus/blob/1fe65ddae4c04315bd88535e3c2eaff381436270/flask_restplus/swagger.py"
+   ],
+   "upstream_verdict": "code_overlap",
+   "upstream_coverage": 0.3316,
+   "upstream_matches": 78,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "yuanbaonet/baoaiback",
+     "verdict": "code_overlap",
+     "coverage": 0.3057,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"extract_path\" \"extract_path_params\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"MarshallingError\" \"is_indexable_but_not_string\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"_complete_url\" \"_register_apidoc\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 56,
+   "target_token_warnings": 0
+  },
+  {
+   "id": "niquests",
+   "kind": "project",
+   "condition": "intact",
+   "upstream": "psf/requests",
+   "lead_rank": 20,
+   "lead_count": 24,
+   "lead_provenance": [
+    "Target reference at HISTORY.md:1073:   Taken from closed PR https://github.com/psf/requests/pull/6555 and initially raised in https://github.com/psf/requests/issues/3929",
+    "Target reference at HISTORY.md:1086:   Patch taken from idle upstream PR https://github.com/psf/requests/pull/6302",
+    "Target reference at HISTORY.md:1115:   Patch taken from idle upstream PR https://github.com/psf/requests/pull/5953",
+    "Target reference at HISTORY.md:1267:   For context see https://github.com/psf/requests/issues/6118",
+    "Target reference at HISTORY.md:1270:   For context see https://github.com/psf/requests/issues/6026",
+    "Target reference at HISTORY.md:1326:   Full details can be read in our [Github Security Advisory](https://github.com/psf/requests/security/advisories/GHSA-j8r2-6x86-q33q)",
+    "Target reference at HISTORY.md:2347:     ([\\#2249](https://github.com/psf/requests/issues/2249))",
+    "Target reference at HISTORY.md:2355:     ([\\#2258](https://github.com/psf/requests/pull/2258))"
+   ],
+   "upstream_verdict": null,
+   "upstream_coverage": null,
+   "upstream_matches": null,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [],
+   "code_searches": [
+    {
+     "query": "\"SOCKSProxyManager\" \"AsyncSOCKSProxyManager\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"AsyncSession\" \"on_post_connection\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"_LineDecoder\" \"TransferProgress\"",
+     "status": "0 results"
+    }
+   ],
+   "target_source_files": 114,
+   "target_token_warnings": 0
+  },
+  {
+   "id": "niquests",
+   "kind": "project",
+   "condition": "stripped",
+   "upstream": "psf/requests",
+   "lead_rank": null,
+   "lead_count": 17,
+   "lead_provenance": [],
+   "upstream_verdict": null,
+   "upstream_coverage": null,
+   "upstream_matches": null,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [],
+   "code_searches": [
+    {
+     "query": "\"SOCKSProxyManager\" \"AsyncSOCKSProxyManager\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"AsyncSession\" \"on_post_connection\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"_LineDecoder\" \"TransferProgress\"",
+     "status": "0 results"
+    }
+   ],
+   "target_source_files": 111,
+   "target_token_warnings": 0
+  },
+  {
+   "id": "urllib3-future",
+   "kind": "project",
+   "condition": "intact",
+   "upstream": "urllib3/urllib3",
+   "lead_rank": 21,
+   "lead_count": 24,
+   "lead_provenance": [
+    "Target reference at README.md:804: [experimental contribution to urllib3](https://github.com/urllib3/urllib3/pull/3030)",
+    "Target reference at README.md:823: In July 2026, urllib3 [appointed](https://github.com/urllib3/urllib3/issues/3000#issuecomment-5227891874) a",
+    "Target reference at README.md:824: dedicated developer to [pursue an HTTP/2 implementation](https://github.com/urllib3/urllib3/pull/5278) after rejecting the idea that outside collaborators",
+    "Target reference at CHANGES.rst:110:   Backported from https://github.com/urllib3/urllib3/pull/5304.",
+    "Target reference at CHANGES.rst:1222:   https://github.com/urllib3/urllib3/pull/3434",
+    "Target reference at CHANGES.rst:136:   https://github.com/urllib3/urllib3/pull/3186",
+    "Target reference at CHANGES.rst:1825: - Added ``BaseHTTPResponse`` to ``__all__`` in ``__init__.py`` (`#3078 <https://github.com/urllib3/urllib3/issues/3078>`__)",
+    "Target reference at CHANGES.rst:1831: - Allowed alternative SSL libraries such as LibreSSL, while still issuing a warning as we cannot help users facing issues with implementations other than OpenSSL. (`#3020 <https://github.com/urllib3/urllib3/issues/3020>`"
+   ],
+   "upstream_verdict": null,
+   "upstream_coverage": null,
+   "upstream_matches": null,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [],
+   "code_searches": [
+    {
+     "query": "\"_has_niquests_callbacks\" \"ConnectionPool\"",
+     "status": "0 results"
+    },
+    {
+     "query": "\"AsyncConnectionPool\" \"idle_conn_watch_task\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"_HAS_HTTP3_SUPPORT\" \"HfaceBackend\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 132,
+   "target_token_warnings": 111
+  },
+  {
+   "id": "urllib3-future",
+   "kind": "project",
+   "condition": "stripped",
+   "upstream": "urllib3/urllib3",
+   "lead_rank": null,
+   "lead_count": 16,
+   "lead_provenance": [],
+   "upstream_verdict": null,
+   "upstream_coverage": null,
+   "upstream_matches": null,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [],
+   "code_searches": [
+    {
+     "query": "\"_has_niquests_callbacks\" \"ConnectionPool\"",
+     "status": "0 results"
+    },
+    {
+     "query": "\"AsyncConnectionPool\" \"idle_conn_watch_task\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"ActiveCursor\" \"_current_task_or_die\"",
+     "status": "1 results"
+    }
+   ],
+   "target_source_files": 139,
+   "target_token_warnings": 103
+  },
+  {
+   "id": "asyncclick",
+   "kind": "project",
+   "condition": "intact",
+   "upstream": "pallets/click",
+   "lead_rank": 1,
+   "lead_count": 24,
+   "lead_provenance": [
+    "Target reference at docs/quickstart.md:25: - [naval](https://github.com/pallets/click/tree/main/examples/naval) : Port of the [docopt](http://docopt.org/) naval",
+    "GitHub code search: \"ParamTypeInfoDict\" \"to_info_dict\"; https://github.com/pallets/click/blob/2247b35ea1c47c727d7a06e51fa280e12a863ff6/src/click/types.py",
+    "GitHub repositories search: click in:name; https://github.com/pallets/click",
+    "Target reference at .github/ISSUE_TEMPLATE/config.yml:4:     url: https://github.com/pallets/click/discussions/",
+    "Target reference at docs/commands.md:290: see the [imagepipe example](https://github.com/pallets/click/tree/main/examples/imagepipe)",
+    "Target reference at docs/conf.py:28:     \"issue\": (\"https://github.com/pallets/click/issues/%s\", \"#%s\"),",
+    "Target reference at docs/conf.py:29:     \"pr\": (\"https://github.com/pallets/click/pull/%s\", \"#%s\"),",
+    "Target reference at docs/conf.py:45:         ProjectLink(\"Source Code\", \"https://github.com/pallets/click/\"),"
+   ],
+   "upstream_verdict": "corroborated_component",
+   "upstream_coverage": 0.396,
+   "upstream_matches": 71,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "kuuhaku1314/qqtang",
+     "verdict": "code_overlap",
+     "coverage": 0.5478,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "riteshbonthalakoti/helpdesk.ai",
+     "verdict": "code_overlap",
+     "coverage": 0.3353,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"_complete_visible_commands\" \"_check_nested_chain\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"ParamTypeInfoDict\" \"to_info_dict\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"_BufferedTextPagerStream\" \"_has_binary_buffer\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 63,
+   "target_token_warnings": 0
+  },
+  {
+   "id": "asyncclick",
+   "kind": "project",
+   "condition": "stripped",
+   "upstream": "pallets/click",
+   "lead_rank": 6,
+   "lead_count": 24,
+   "lead_provenance": [
+    "GitHub code search: \"ParamTypeInfoDict\" \"to_info_dict\"; https://github.com/pallets/click/blob/2247b35ea1c47c727d7a06e51fa280e12a863ff6/src/click/types.py"
+   ],
+   "upstream_verdict": null,
+   "upstream_coverage": null,
+   "upstream_matches": null,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "kuuhaku1314/qqtang",
+     "verdict": "code_overlap",
+     "coverage": 0.5503,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "riteshbonthalakoti/helpdesk.ai",
+     "verdict": "code_overlap",
+     "coverage": 0.3368,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "6502-retro/6502-retro-os",
+     "verdict": "component_overlap",
+     "coverage": 0.0,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"_complete_visible_commands\" \"_check_nested_chain\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"ParamTypeInfoDict\" \"to_info_dict\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"_BufferedTextPagerStream\" \"_has_binary_buffer\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 62,
+   "target_token_warnings": 0
+  },
+  {
+   "id": "hyfetch",
+   "kind": "component",
+   "condition": "intact",
+   "upstream": "dylanaraps/neofetch",
+   "lead_rank": 19,
+   "lead_count": 24,
+   "lead_provenance": [
+    "Target reference at README.md:418: * 🖼 OS - Disable Hackintosh check on arm64 processors ([dylanaraps#2396](https://github.com/dylanaraps/neofetch/pull/2396))",
+    "Target reference at README.md:420: * 🖼 Distro - Fixed Kubuntu recognized as Ubuntu ([dylanaraps#2411](https://github.com/dylanaraps/neofetch/pull/2411))",
+    "Target reference at README.md:423: * 🖼 Distro - Add aerOS ([dylanaraps#2360](https://github.com/dylanaraps/neofetch/pull/2360))",
+    "Target reference at README.md:425: * 🖼 Distro - Add EndeavourOS Small Option ([dylanaraps#2391](https://github.com/dylanaraps/neofetch/pull/2391))",
+    "Target reference at README.md:426: * 🖼 Distro - Add AZOS ([dylanaraps#2339](https://github.com/dylanaraps/neofetch/pull/2339))",
+    "Target reference at README.md:427: * 🖼 Distro - Add MainsailOS ([dylanaraps#2407](https://github.com/dylanaraps/neofetch/pull/2407))",
+    "Target reference at README.md:428: * 🖼 Distro - Add Interix ([dylanaraps#2409](https://github.com/dylanaraps/neofetch/pull/2409))",
+    "Target reference at README.md:429: * 🖼 Distro - Add Peropesis Linux ([dylanaraps#2414](https://github.com/dylanaraps/neofetch/pull/2414))"
+   ],
+   "upstream_verdict": null,
+   "upstream_coverage": null,
+   "upstream_matches": null,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "kaisenlinux/hyfetch",
+     "verdict": "code_overlap",
+     "coverage": 0.1101,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"get_packages\" \"is_external_package_manager\"",
+     "status": "0 results"
+    },
+    {
+     "query": "\"parse_preset_string\" \"RawModeGuard\"",
+     "status": "1 results"
+    },
+    {
+     "query": "\"parse_hex_colors\" \"check_config\"",
+     "status": "2 results"
+    }
+   ],
+   "target_source_files": 49,
+   "target_token_warnings": 1
+  },
+  {
+   "id": "hyfetch",
+   "kind": "component",
+   "condition": "stripped",
+   "upstream": "dylanaraps/neofetch",
+   "lead_rank": null,
+   "lead_count": 11,
+   "lead_provenance": [],
+   "upstream_verdict": null,
+   "upstream_coverage": null,
+   "upstream_matches": null,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [],
+   "code_searches": [
+    {
+     "query": "\"get_packages\" \"is_external_package_manager\"",
+     "status": "0 results"
+    },
+    {
+     "query": "\"parse_preset_string\" \"RawModeGuard\"",
+     "status": "1 results"
+    },
+    {
+     "query": "\"parse_hex_colors\" \"check_config\"",
+     "status": "2 results"
+    }
+   ],
+   "target_source_files": 49,
+   "target_token_warnings": 1
+  },
+  {
+   "id": "pip",
+   "kind": "component",
+   "condition": "intact",
+   "upstream": "psf/requests",
+   "lead_rank": null,
+   "lead_count": 24,
+   "lead_provenance": [],
+   "upstream_verdict": null,
+   "upstream_coverage": null,
+   "upstream_matches": null,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "pypa/pipenv",
+     "verdict": "code_overlap",
+     "coverage": 0.4926,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"parse_marker\" \"parse_requirement\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"CertificateError\" \"_dnsname_match\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"raise_option_error\" \"make_option_group\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 188,
+   "target_token_warnings": 436
+  },
+  {
+   "id": "pip",
+   "kind": "component",
+   "condition": "stripped",
+   "upstream": "psf/requests",
+   "lead_rank": null,
+   "lead_count": 24,
+   "lead_provenance": [],
+   "upstream_verdict": null,
+   "upstream_coverage": null,
+   "upstream_matches": null,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "pypa/pipenv",
+     "verdict": "code_overlap",
+     "coverage": 0.4699,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "damnever/pigar",
+     "verdict": "code_overlap",
+     "coverage": 0.369,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "pymedusa/medusa",
+     "verdict": "code_overlap",
+     "coverage": 0.0284,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"parse_marker\" \"parse_requirement\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"CertificateError\" \"_dnsname_match\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"raise_option_error\" \"make_option_group\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 185,
+   "target_token_warnings": 436
+  },
+  {
+   "id": "yt-dlp",
+   "kind": "project",
+   "condition": "intact",
+   "upstream": "ytdl-org/youtube-dl",
+   "lead_rank": 2,
+   "lead_count": 24,
+   "lead_provenance": [
+    "Target reference at README.md:16: yt-dlp is a feature-rich command-line audio/video downloader with support for [thousands of sites](supportedsites.md). The project is a fork of [youtube-dl](https://github.com/ytdl-org/youtube-dl) based on the now inacti",
+    "GitHub repositories search: youtube-dl in:name; https://github.com/ytdl-org/youtube-dl",
+    "Target reference at README.md:2274:     * Fix for [n-sig based throttling](https://github.com/ytdl-org/youtube-dl/issues/29326) **\\***",
+    "Target reference at README.md:2316: * yt-dlp supports only [Python 3.11+](#dependencies), and will remove support for more versions as they [become EOL](https://devguide.python.org/versions/#python-release-cycle); while [youtube-dl still supports Python 2.",
+    "Target reference at CONTRIBUTING.md:112: Additionally, it is also helpful to see if the issue has already been documented in the [youtube-dl issue tracker](https://github.com/ytdl-org/youtube-dl/issues). If similar issues have already been reported in youtube-d",
+    "Target reference at CONTRIBUTING.md:158: We follow [youtube-dl's policy](https://github.com/ytdl-org/youtube-dl#can-you-add-support-for-this-anime-video-site-or-site-which-shows-current-movies-for-free) to not support services that is primarily used for infring",
+    "Target reference at Changelog.md:3466: * Merge youtube-dl: Upto [commit/2dd6c6e](https://github.com/ytdl-org/youtube-dl/commit/2dd6c6e)",
+    "Target reference at Changelog.md:3584: * Merge youtube-dl: Upto [commit/195f22f](https://github.com/ytdl-org/youtube-dl/commit/195f22f6) by [Grub4K](https://github.com/Grub4K), [pukkandan](https://github.com/pukkandan)"
+   ],
+   "upstream_verdict": "corroborated_derivation",
+   "upstream_coverage": 0.0527,
+   "upstream_matches": 59,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "blackjack4494/yt-dlc",
+     "verdict": "corroborated_derivation",
+     "coverage": 0.0454,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "animelover1984/youtube-dl",
+     "verdict": "corroborated_component",
+     "coverage": 0.0432,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"_catch_unsafe_extension_error\" \"process_color_policy\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"BilibiliBaseIE\" \"is_logged_in\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"_perform_login\" \"MediaSelectionError\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 145,
+   "target_token_warnings": 980
+  },
+  {
+   "id": "yt-dlp",
+   "kind": "project",
+   "condition": "stripped",
+   "upstream": "ytdl-org/youtube-dl",
+   "lead_rank": null,
+   "lead_count": 24,
+   "lead_provenance": [],
+   "upstream_verdict": null,
+   "upstream_coverage": null,
+   "upstream_matches": null,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "meowcateatrat/elephant",
+     "verdict": "code_overlap",
+     "coverage": 0.5075,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "ifsvivek/videofetch",
+     "verdict": "code_overlap",
+     "coverage": 0.3123,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "lekma/script.module.yt-dlp",
+     "verdict": "code_overlap",
+     "coverage": 0.5075,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"BilibiliBaseIE\" \"is_logged_in\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"_catch_unsafe_extension_error\" \"process_color_policy\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"_perform_login\" \"MediaSelectionError\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 172,
+   "target_token_warnings": 951
+  },
+  {
+   "id": "valkey",
+   "kind": "project",
+   "condition": "intact",
+   "upstream": "redis/redis",
+   "lead_rank": 3,
+   "lead_count": 24,
+   "lead_provenance": [
+    "GitHub code search: \"xorStringObjectDigest\" \"mixStringObjectDigest\"; https://github.com/redis/redis/blob/669b2b9bab70e442db8c1255b581e4a54785de25/src/debug.c",
+    "GitHub code search: \"lookupConfig\" \"configEnumGetValue\"; https://github.com/redis/redis/blob/669b2b9bab70e442db8c1255b581e4a54785de25/src/config.c",
+    "GitHub code search: \"getNodeDefaultClientPort\" \"getNodeDefaultReplicationPort\"; https://github.com/redis/redis/blob/669b2b9bab70e442db8c1255b581e4a54785de25/src/cluster_legacy.c",
+    "Target reference at deps/hiredis/.travis.yml:21:         wget https://github.com/redis/redis/archive/6.0.6.tar.gz;",
+    "Target reference at src/cluster_legacy.c:4949:          * See https://github.com/redis/redis/issues/3043 for more info. */",
+    "Target reference at src/networking.c:4158:      * See https://github.com/redis/redis/issues/6988 for more info.",
+    "Target reference at tests/unit/expire.tcl:458:         # See: https://github.com/redis/redis/issues/8433",
+    "Target reference at tests/unit/pubsub.tcl:486:         # breaks the multi response, see https://github.com/redis/redis/issues/12207"
+   ],
+   "upstream_verdict": "code_overlap",
+   "upstream_coverage": 0.0813,
+   "upstream_matches": 41,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "dicedb/dicedb",
+     "verdict": "code_overlap",
+     "coverage": 0.1371,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"getNodeDefaultClientPort\" \"getNodeDefaultReplicationPort\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"lookupConfig\" \"configEnumGetValue\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"xorStringObjectDigest\" \"mixStringObjectDigest\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 49,
+   "target_token_warnings": 754
+  },
+  {
+   "id": "valkey",
+   "kind": "project",
+   "condition": "stripped",
+   "upstream": "redis/redis",
+   "lead_rank": 1,
+   "lead_count": 24,
+   "lead_provenance": [
+    "GitHub code search: \"xorStringObjectDigest\" \"mixStringObjectDigest\"; https://github.com/redis/redis/blob/669b2b9bab70e442db8c1255b581e4a54785de25/src/debug.c",
+    "GitHub code search: \"lookupConfig\" \"configEnumGetValue\"; https://github.com/redis/redis/blob/669b2b9bab70e442db8c1255b581e4a54785de25/src/config.c",
+    "GitHub code search: \"getNodeDefaultClientPort\" \"getNodeDefaultReplicationPort\"; https://github.com/redis/redis/blob/669b2b9bab70e442db8c1255b581e4a54785de25/src/cluster_legacy.c"
+   ],
+   "upstream_verdict": "code_overlap",
+   "upstream_coverage": 0.081,
+   "upstream_matches": 42,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "dicedb/dicedb",
+     "verdict": "code_overlap",
+     "coverage": 0.1368,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "cn-annotation-team/redis7.0-chinese-annotated",
+     "verdict": "code_overlap",
+     "coverage": 0.0957,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"getNodeDefaultClientPort\" \"getNodeDefaultReplicationPort\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"lookupConfig\" \"configEnumGetValue\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"xorStringObjectDigest\" \"mixStringObjectDigest\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 49,
+   "target_token_warnings": 754
+  },
+  {
+   "id": "lodash",
+   "kind": "project",
+   "condition": "intact",
+   "upstream": "jashkenas/underscore",
+   "lead_rank": 21,
+   "lead_count": 23,
+   "lead_provenance": [
+    "Target reference at README.md:129:  * Ensure `_.throttle` works when called in tight loops [[#502](https://github.com/documentcloud/underscore/issues/502), [test](https://github.com/bestiejs/lodash/blob/32627f45072952df18a64cf5e9f2433d2d32730f/test/test.j",
+    "Target reference at README.md:130:  * Fix Firefox, IE, Opera, and Safari object iteration bugs [[#376](https://github.com/documentcloud/underscore/issues/376), [test](https://github.com/bestiejs/lodash/blob/32627f45072952df18a64cf5e9f2433d2d32730f/test/te",
+    "Target reference at README.md:131:  * Handle arrays with `undefined` values correctly in IE < 9 [[#601](https://github.com/documentcloud/underscore/issues/601)]",
+    "Target reference at README.md:132:  * Methods should work on pages with incorrectly shimmed native methods [[#7](https://github.com/documentcloud/underscore/issues/7), [test](https://github.com/bestiejs/lodash/blob/32627f45072952df18a64cf5e9f2433d2d32730f",
+    "Target reference at README.md:133:  * Register as AMD module, but still export to global [[#431](https://github.com/documentcloud/underscore/pull/431), [test](https://github.com/bestiejs/lodash/blob/32627f45072952df18a64cf5e9f2433d2d32730f/test/test.js#L6",
+    "Target reference at README.md:134:  * `_.forEach` should be chainable [[#142](https://github.com/documentcloud/underscore/issues/142), [test](https://github.com/bestiejs/lodash/blob/5bcd444084c92b1753feeaf66c20323e57a2dac3/test/test.js#L74-77)]"
+   ],
+   "upstream_verdict": null,
+   "upstream_coverage": null,
+   "upstream_matches": null,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [],
+   "code_searches": [
+    {
+     "query": "\"createIterator\" \"iteratorBind\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 9,
+   "target_token_warnings": 1
+  },
+  {
+   "id": "lodash",
+   "kind": "project",
+   "condition": "stripped",
+   "upstream": "jashkenas/underscore",
+   "lead_rank": null,
+   "lead_count": 19,
+   "lead_provenance": [],
+   "upstream_verdict": null,
+   "upstream_coverage": null,
+   "upstream_matches": null,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [],
+   "code_searches": [
+    {
+     "query": "\"createIterator\" \"iteratorBind\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 8,
+   "target_token_warnings": 1
+  },
+  {
+   "id": "gitea",
+   "kind": "project",
+   "condition": "intact",
+   "upstream": "gogs/gogs",
+   "lead_rank": 3,
+   "lead_count": 24,
+   "lead_provenance": [
+    "GitHub code search: \"initCommentPreviewTab\" \"initEditPreviewTab\"; https://github.com/gogs/gogs/blob/35ff5d98e3ed84697807ffdeaaca744223e85344/public/js/gogs.js",
+    "GitHub code search: \"LoadRepoConfig\" \"NewRepoContext\"; https://github.com/gogs/gogs/blob/35ff5d98e3ed84697807ffdeaaca744223e85344/cmd/gogs/internal/web/web.go",
+    "GitHub code search: \"LoadRepoConfig\" \"NewRepoContext\"; https://github.com/gogs/gogs/blob/35ff5d98e3ed84697807ffdeaaca744223e85344/internal/database/repo.go"
+   ],
+   "upstream_verdict": "code_overlap",
+   "upstream_coverage": 0.0247,
+   "upstream_matches": 33,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [],
+   "code_searches": [
+    {
+     "query": "\"LoadRepoConfig\" \"NewRepoContext\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"BeforeInsert\" \"BeforeUpdate\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"initCommentPreviewTab\" \"initEditPreviewTab\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 157,
+   "target_token_warnings": 1290
+  },
+  {
+   "id": "gitea",
+   "kind": "project",
+   "condition": "stripped",
+   "upstream": "gogs/gogs",
+   "lead_rank": 1,
+   "lead_count": 24,
+   "lead_provenance": [
+    "GitHub code search: \"initCommentPreviewTab\" \"initEditPreviewTab\"; https://github.com/gogs/gogs/blob/35ff5d98e3ed84697807ffdeaaca744223e85344/public/js/gogs.js",
+    "GitHub code search: \"LoadRepoConfig\" \"NewRepoContext\"; https://github.com/gogs/gogs/blob/35ff5d98e3ed84697807ffdeaaca744223e85344/cmd/gogs/internal/web/web.go",
+    "GitHub code search: \"LoadRepoConfig\" \"NewRepoContext\"; https://github.com/gogs/gogs/blob/35ff5d98e3ed84697807ffdeaaca744223e85344/internal/database/repo.go"
+   ],
+   "upstream_verdict": "code_overlap",
+   "upstream_coverage": 0.0247,
+   "upstream_matches": 33,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "g-node/gogs",
+     "verdict": "code_overlap",
+     "coverage": 0.0668,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"LoadRepoConfig\" \"NewRepoContext\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"BeforeInsert\" \"BeforeUpdate\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"initCommentPreviewTab\" \"initEditPreviewTab\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 157,
+   "target_token_warnings": 1288
+  },
+  {
+   "id": "pypdf",
+   "kind": "project",
+   "condition": "intact",
+   "upstream": "mfenniak/pyPdf",
+   "lead_rank": 4,
+   "lead_count": 24,
+   "lead_provenance": [
+    "GitHub code search: \"writeToStream\" \"readFromStream\"; https://github.com/mfenniak/pyPdf/blob/4abdca42a7d8a47a12f1e35ab86fc80157a2fc16/pyPdf/generic.py",
+    "GitHub code search: \"PdfFileWriter\" \"addBlankPage\"; https://github.com/mfenniak/pyPdf/blob/4abdca42a7d8a47a12f1e35ab86fc80157a2fc16/pyPdf/pdf.py"
+   ],
+   "upstream_verdict": "code_overlap",
+   "upstream_coverage": 0.153,
+   "upstream_matches": 4,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "gagayuan/runoob-pdf-",
+     "verdict": "code_overlap",
+     "coverage": 0.1018,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "colemana/pypdf2",
+     "verdict": "code_overlap",
+     "coverage": 0.2418,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"PdfFileWriter\" \"addBlankPage\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"writeToStream\" \"readFromStream\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"PdfFileMerger\" \"_trim_outline\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 8,
+   "target_token_warnings": 0
+  },
+  {
+   "id": "pypdf",
+   "kind": "project",
+   "condition": "stripped",
+   "upstream": "mfenniak/pyPdf",
+   "lead_rank": 4,
+   "lead_count": 24,
+   "lead_provenance": [
+    "GitHub code search: \"writeToStream\" \"readFromStream\"; https://github.com/mfenniak/pyPdf/blob/4abdca42a7d8a47a12f1e35ab86fc80157a2fc16/pyPdf/generic.py",
+    "GitHub code search: \"PdfFileWriter\" \"addBlankPage\"; https://github.com/mfenniak/pyPdf/blob/4abdca42a7d8a47a12f1e35ab86fc80157a2fc16/pyPdf/pdf.py"
+   ],
+   "upstream_verdict": "code_overlap",
+   "upstream_coverage": 0.1529,
+   "upstream_matches": 4,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "gagayuan/runoob-pdf-",
+     "verdict": "code_overlap",
+     "coverage": 0.1019,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "colemana/pypdf2",
+     "verdict": "code_overlap",
+     "coverage": 0.2416,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"PdfFileWriter\" \"addBlankPage\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"writeToStream\" \"readFromStream\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"PdfFileMerger\" \"_trim_outline\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 8,
+   "target_token_warnings": 0
+  }
+ ]
+}

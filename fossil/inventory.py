@@ -8,7 +8,7 @@ import os
 import tokenize as py_tokenize
 import json
 import re
-from collections import Counter
+import warnings
 from pathlib import Path
 
 from .acquire import MAX_FILE, MAX_FILES, MAX_TOTAL, SKIP
@@ -23,30 +23,36 @@ URL = re.compile(r"https?://github\.com/([A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)")
 
 def tokenize(text: str, *, python: bool = False) -> tuple[list[str], list[int]]:
     if python:
-        try:
-            tree = ast.parse(text)
-            spans = set()
-            for node in ast.walk(tree):
-                body = getattr(node, "body", None)
-                if isinstance(body, list) and body and isinstance(body[0], ast.Expr) and isinstance(body[0].value, ast.Constant) and isinstance(body[0].value.value, str):
-                    spans.add((body[0].lineno, body[0].col_offset))
-            tokens, lines = [], []
-            ignored = {py_tokenize.COMMENT, py_tokenize.NL, py_tokenize.NEWLINE, py_tokenize.INDENT, py_tokenize.DEDENT, py_tokenize.ENDMARKER, py_tokenize.ENCODING}
-            for t in py_tokenize.generate_tokens(io.StringIO(text).readline):
-                if t.type in ignored or t.start in spans:
-                    continue
-                value = t.string
-                if t.type == py_tokenize.STRING:
-                    try:
-                        value = repr(ast.literal_eval(value))
-                    except (ValueError, SyntaxError):
-                        pass
-                tokens.append(value)
-                lines.append(t.start[0])
-            return tokens, lines
-        except (SyntaxError, ValueError, py_tokenize.TokenError, RecursionError):
-            pass  # Python 2/incomplete files retain the generic lexical fallback.
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", SyntaxWarning)  # old escape sequences in investigated code
+            return python_tokens(text)
     return generic_tokens(text)
+
+
+def python_tokens(text: str) -> tuple[list[str], list[int]]:
+    try:
+        tree = ast.parse(text)
+        spans = set()
+        for node in ast.walk(tree):
+            body = getattr(node, "body", None)
+            if isinstance(body, list) and body and isinstance(body[0], ast.Expr) and isinstance(body[0].value, ast.Constant) and isinstance(body[0].value.value, str):
+                spans.add((body[0].lineno, body[0].col_offset))
+        tokens, lines = [], []
+        ignored = {py_tokenize.COMMENT, py_tokenize.NL, py_tokenize.NEWLINE, py_tokenize.INDENT, py_tokenize.DEDENT, py_tokenize.ENDMARKER, py_tokenize.ENCODING}
+        for t in py_tokenize.generate_tokens(io.StringIO(text).readline):
+            if t.type in ignored or t.start in spans:
+                continue
+            value = t.string
+            if t.type == py_tokenize.STRING:
+                try:
+                    value = repr(ast.literal_eval(value))
+                except (ValueError, SyntaxError):
+                    pass
+            tokens.append(value)
+            lines.append(t.start[0])
+        return tokens, lines
+    except (SyntaxError, ValueError, py_tokenize.TokenError, RecursionError):
+        return generic_tokens(text)  # Python 2/incomplete files retain the generic lexical fallback.
 
 
 def generic_tokens(text: str) -> tuple[list[str], list[int]]:
@@ -95,7 +101,6 @@ def dependencies(path: str, text: str) -> list[str]:
 def inspect(root: Path) -> dict:
     files, refs, deps, licenses, warnings = [], [], set(), [], []
     total = 0
-    total_tokens = 0
     paths = []
     for base, dirs, names in os.walk(root, followlinks=False):
         dirs[:] = sorted(d for d in dirs if d not in SKIP and not (Path(base) / d).is_symlink())
@@ -117,14 +122,11 @@ def inspect(root: Path) -> dict:
                 continue
         except UnicodeDecodeError:
             continue
-        tokens, lines = tokenize(text, python=p.suffix.lower() == ".py") if p.suffix.lower() in SOURCE else ([], [])
-        original_tokens = len(tokens)
-        limit = min(MAX_FILE_TOKENS, max(0, MAX_TOTAL_TOKENS - total_tokens))
-        if original_tokens > limit:
-            tokens, lines = tokens[:limit], lines[:limit]
-            warnings.append("Source token limit: " + rel + f" ({len(tokens)}/{original_tokens} tokens analyzed)")
-        total_tokens += len(tokens)
-        files.append({"path": rel, "original_tokens": original_tokens, "sha256": hashlib.sha256(raw).hexdigest(), "bytes": size,
+        suffix = p.suffix.lower()
+        # Extensionless scripts (bin/tool, neofetch) are source when they carry a shebang.
+        shebang = text[:120].split("\n", 1)[0] if suffix == "" and text.startswith("#!") else ""
+        tokens, lines = tokenize(text, python=suffix == ".py" or "python" in shebang) if suffix in SOURCE or shebang else ([], [])
+        files.append({"path": rel, "original_tokens": len(tokens), "sha256": hashlib.sha256(raw).hexdigest(), "bytes": size,
                       "text": text, "tokens": tokens, "token_lines": lines, "context": context(rel, text), "source": bool(tokens)})
         deps.update(dependencies(rel, text))
         if re.match(r"(?i)^(licen[cs]e|copying|notice)", p.name):
@@ -146,8 +148,66 @@ def inspect(root: Path) -> dict:
                         statement = before + " " + statement
                 commit_match = re.match(r"/commit/([0-9a-fA-F]{40})", line[m.end():])
                 refs.append({"repository": name, "path": rel, "line": number, "text": line[:700], "statement": statement[:700], "ref": commit_match.group(1) if commit_match else None})
+    budget(files, warnings)
     manifest = "\n".join(f["path"] + ":" + f["sha256"] for f in files)
-    symbols = Counter(t for f in files if f["context"] == "application" for t in f["tokens"] if len(t) >= 12 and re.fullmatch(r"[A-Za-z_]\w+", t))
+    groups = search_terms(files)
     return {"digest": hashlib.sha256(manifest.encode()).hexdigest(), "files": files, "references": refs,
             "dependencies": sorted(deps), "licenses": licenses, "warnings": warnings,
-            "symbols": list(dict.fromkeys([m.group(1) for f in files if f["source"] and f["context"] == "application" for m in re.finditer(r"(?:def|function|class|func|fn)\s+([A-Za-z_]\w{11,})", f["text"])]+[s for s, _ in symbols.most_common(12)]))[:12], "source_files": sum(f["source"] for f in files)}
+            "symbols": [s for group in groups for s in group][:12], "search_terms": groups,
+            "source_files": sum(f["source"] for f in files)}
+
+
+def budget(files: list[dict], warnings: list[str]) -> None:
+    # Application code gets the snapshot token budget first, so vendored trees
+    # that sort early (deps/, _vendor/) cannot starve the project's own source.
+    remaining = MAX_TOTAL_TOKENS
+    limits = {}
+    for f in sorted(files, key=lambda f: f["context"] != "application"):
+        limits[f["path"]] = min(MAX_FILE_TOKENS, remaining, len(f["tokens"]))
+        remaining -= limits[f["path"]]
+    for f in files:
+        if len(f["tokens"]) > limits[f["path"]]:
+            n = limits[f["path"]]
+            warnings.append("Source token limit: " + f["path"] + f" ({n}/{len(f['tokens'])} tokens analyzed)")
+            f["tokens"], f["token_lines"], f["source"] = f["tokens"][:n], f["token_lines"][:n], n > 0
+
+
+SUPPORT_DIRS = {"scripts", "devscripts", "tools", "docs", "doc", "build", "ci", "benchmarks", "bench", ".github"}
+SUPPORT_FILES = {"setup.py", "noxfile.py", "conftest.py", "fabfile.py", "build.js", "build.py", "gulpfile.js", "gruntfile.js", "webpack.config.js"}
+DEFINITION = re.compile(r"\b(?:def|function|class|func|fn|struct|interface|enum|trait)\s+(?:\([^)]*\)\s*)?([A-Za-z_]\w{11,})")
+# C-family top-level functions: a declaration at column 0 whose name is followed by "(".
+C_DEFINITION = re.compile(r"^(?!(?:return|else|if|while|for|switch|case|typedef|extern)\b)[A-Za-z_][\w \t\*&:<>,]*?[\s\*&]([A-Za-z_]\w{11,})\s*\([^;]*$", re.M)
+C_FAMILY = {".c", ".h", ".cpp", ".hpp", ".cc", ".m"}
+SHELL_DEFINITION = re.compile(r"^\s*(?:function\s+)?([A-Za-z_][\w]{11,})\s*\(\)", re.M)
+
+
+def parts(name: str) -> int:
+    return len([p for p in re.split(r"_|(?<=[a-z0-9])(?=[A-Z])", name) if p])
+
+
+def search_terms(files: list[dict]) -> list[list[str]]:
+    """Up to two distinctive defined names per core file, largest files first.
+
+    Names defined in the same file let discovery ask for both at once; copied
+    code keeps a file's definitions together, generic vocabulary rarely does.
+    """
+    core = [f for f in files if f["source"] and f["context"] == "application"
+            and not SUPPORT_DIRS & set(Path(f["path"]).parts[:-1]) and Path(f["path"]).name.lower() not in SUPPORT_FILES]
+    seen, groups = set(), []
+    for f in sorted(core, key=lambda f: (-f["original_tokens"], f["path"])):
+        group = []
+        suffix = Path(f["path"]).suffix.lower()
+        shell = suffix == ".sh" or (suffix == "" and re.match(r"#!.*\b(?:ba|z|k|da)?sh\b", f["text"]))
+        pattern = C_DEFINITION if suffix in C_FAMILY else SHELL_DEFINITION if shell else DEFINITION
+        for m in pattern.finditer(f["text"]):
+            name = m.group(1)
+            if name not in seen and parts(name) >= 2 and not name.lower().startswith("test"):
+                seen.add(name)
+                group.append(name)
+                if len(group) == 2:
+                    break
+        if group:
+            groups.append(group)
+        if len(groups) == 6:
+            break
+    return groups

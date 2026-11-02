@@ -8,7 +8,9 @@ Fossil's demonstrations found ancestry that the target documented itself. This b
 
 [holdout.json](holdout.json) lists six more pairs (searxng, flask-security, pillow-simd, postman-request, bbolt, mlua) chosen and pinned *before* 0.2 was run on them. They were the honest estimate for 0.2, and their failures informed 0.3, so they are in-sample from 0.3 on.
 
-[holdout2.json](holdout2.json) lists eight pairs across Rust, JavaScript, Go, Python and C (eza, terser, golang-jwt, nextcord, pycryptodome, angie, neovim, mysqlclient), committed before any 0.3 code was written and run only after 0.3 was frozen. Each tuning round needs a new holdout like this one.
+[holdout2.json](holdout2.json) lists eight pairs across Rust, JavaScript, Go, Python and C (eza, terser, golang-jwt, nextcord, pycryptodome, angie, neovim, mysqlclient), committed before any 0.3 code was written and run only after 0.3 was frozen. It is in-sample from 0.4 on.
+
+[holdout3.json](holdout3.json) lists ten pairs across nine languages (pdfminer.six, dj-rest-auth, markdown-it, opentofu, yaml-rust2, zlib-ng, htop, laminas-diactoros, kt-paperclip, jellyfin), committed before any 0.4 code was written. Each tuning round needs a new holdout like these.
 
 Each target is investigated twice, both times as a **local snapshot with no Git history and no GitHub metadata**. That removes fork metadata and shared commits, the two strongest signals in a normal run.
 

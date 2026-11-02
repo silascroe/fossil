@@ -1,0 +1,25 @@
+{
+  "note": "Third holdout, chosen and pinned on 2026-11-01 before any 0.4 change was written, and not run on any version until 0.4 is frozen. Same format as pairs.json. Ten pairs across nine languages. Every upstream is archived or still close to the code the target took, so comparing against its default branch is fair.",
+  "pairs": [
+    {"id": "pdfminer.six", "target": "pdfminer/pdfminer.six", "ref": "e2d3adc8c1b3d94fa94693df0cd7a33b5b1175b3", "upstream": "euske/pdfminer", "kind": "project",
+     "evidence": "README: 'PDFMiner.six is a fork of PDFMiner using six for Python 2+3 compatibility'. Pinned May 2015.", "terms": ["euske", "Yusuke Shinyama", "Shinyama"], "leaks": "The package is still named pdfminer."},
+    {"id": "dj-rest-auth", "target": "iMerica/dj-rest-auth", "ref": "506912f83245ad6844527a5839bec6e34dc2a065", "upstream": "Tivix/django-rest-auth", "kind": "project",
+     "evidence": "README: 'This project began as a fork of django-rest-auth.' Pinned April 2020.", "terms": ["Tivix", "django-rest-auth"], "leaks": ""},
+    {"id": "markdown-it", "target": "markdown-it/markdown-it", "ref": "bf846041fc6dbeaac82f47ce7ad04f9b054d368c", "upstream": "jonschlinkert/remarkable", "kind": "project",
+     "evidence": "README: the authors of 99% of the Remarkable code moved to a new project with the same authorship. Started December 2014 from Remarkable's code. Pinned January 2015.", "terms": ["jonschlinkert", "Jon Schlinkert", "remarkable"], "leaks": ""},
+    {"id": "opentofu", "target": "opentofu/opentofu", "ref": "bb1783c63b8a847fb5c5a04b8a51fe937971fcf6", "upstream": "hashicorp/terraform", "kind": "project",
+     "evidence": "OpenTofu forked Terraform in August 2023 after its license change and carries its history. Pinned September 2023.", "terms": ["hashicorp"], "leaks": "Terraform's name is everywhere: packages, identifiers, file names."},
+    {"id": "yaml-rust2", "target": "Ethiraric/yaml-rust2", "ref": "825edf857426d034954523fed19599635cbb5043", "upstream": "chyh1990/yaml-rust", "kind": "project",
+     "evidence": "GitHub fork of chyh1990/yaml-rust; README: 'This work is based on yaml-rust'. Pinned February 2024.", "terms": ["chyh1990", "Yuheng Chen"], "leaks": "yaml-rust is named in code and tests."},
+    {"id": "zlib-ng", "target": "zlib-ng/zlib-ng", "ref": "28c7dfd175f00e3908fe17b5f2f3c14e884ea2e6", "upstream": "madler/zlib", "kind": "project",
+     "evidence": "README section 'Fork Motivation and History'; zlib-ng began as a fork of zlib 1.2.8. Pinned May 2015.", "terms": ["madler", "Mark Adler", "Jean-loup Gailly", "Gailly"], "leaks": "zlib's name and API are everywhere."},
+    {"id": "htop", "target": "htop-dev/htop", "ref": "da62b44b16834dc78af0816b4ac68eea4fda9eb7", "upstream": "hishamhm/htop", "kind": "project",
+     "evidence": "htop-dev continued htop in August 2020 when the original repository went unmaintained, and carries its history. Pinned September 2020.", "terms": ["hishamhm", "Hisham Muhammad", "Hisham"], "leaks": "htop's name is everywhere."},
+    {"id": "laminas-diactoros", "target": "laminas/laminas-diactoros", "ref": "7d6dcd75922ee32d0c411db2d1c4dbfce0f164d9", "upstream": "zendframework/zend-diactoros", "kind": "project",
+     "evidence": "Laminas is Zend Framework renamed (December 2019); zend-diactoros became laminas-diactoros with namespaces changed from Zend to Laminas. Pinned January 2020.", "terms": ["zendframework", "Zend"], "leaks": ""},
+    {"id": "kt-paperclip", "target": "kreeti/kt-paperclip", "ref": "2f8aef813bcfbec82bf28d64d3d13909646bfc44", "upstream": "thoughtbot/paperclip", "kind": "project",
+     "evidence": "GitHub fork of thoughtbot/paperclip, continued after paperclip was deprecated; README is still paperclip's. Pinned February 2020.", "terms": ["thoughtbot", "Jon Yurek"], "leaks": "The gem and module are still named Paperclip."},
+    {"id": "jellyfin", "target": "jellyfin/jellyfin", "ref": "67cfd43c67405000b042da291e342242285080c8", "upstream": "MediaBrowser/Emby", "kind": "project",
+     "evidence": "README: 'Jellyfin is descended from Emby 3.5.2', forked when Emby went closed source. Pinned December 2018.", "terms": ["Emby", "Luke Pulverenti", "LukePulverenti", "emby\\.media"], "leaks": "MediaBrowser namespaces are everywhere."}
+  ]
+}

@@ -28,7 +28,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 from fossil.acquire import extract_zip, git  # noqa: E402
 
-SETS = {"tuning": "pairs.json", "holdout": "holdout.json", "holdout2": "holdout2.json"}
+SETS = {"tuning": "pairs.json", "holdout": "holdout.json", "holdout2": "holdout2.json", "holdout3": "holdout3.json"}
 CONDITIONS = ("intact", "stripped")
 DOC_NAME = re.compile(r"(?i)^(readme|changelog|changes|history|news|authors|contributors|credits|notice|licen[cs]e|copying|acknowledg|thanks|maintainers)")
 DOC_EXT = {".md", ".rst", ".markdown", ".adoc"}

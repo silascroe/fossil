@@ -25,8 +25,8 @@ For each run, `score` records whether the true upstream appeared among the disco
 
 ```sh
 python bench/run.py prepare [--set holdout2]               # fetch pinned targets, build intact/stripped subjects
-GITHUB_TOKEN=... python bench/run.py run --tag v4 [--set holdout2]
-GITHUB_TOKEN=... python bench/run.py score --tag v4 [--set holdout2]  # writes bench/results/v4-<set>.json
+GITHUB_TOKEN=... python bench/run.py run --tag v5 [--set holdout2]
+GITHUB_TOKEN=... python bench/run.py score --tag v5 [--set holdout2]  # writes bench/results/v5-<set>.json
 ```
 
 `--tag` keeps runs from different Fossil versions apart. `--fossil PATH` runs another checkout, for example a worktree of 0.2 made with `git worktree add ../fossil-0.2 10c3562`, so an older release can be measured on a new holdout. Runs pause 25 seconds between investigations for the code-search rate limit; reruns within 24 hours reuse cached searches, so a lower `--pause` is safe then.

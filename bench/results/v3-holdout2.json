@@ -1,0 +1,719 @@
+{
+ "tag": "v3",
+ "scored_at": "2026-11-02T01:11:48.208435+00:00",
+ "rows": [
+  {
+   "id": "eza",
+   "kind": "project",
+   "condition": "intact",
+   "upstream": "ogham/exa",
+   "lead_rank": 2,
+   "lead_count": 24,
+   "lead_provenance": [
+    "GitHub code search: \"new_aa_current\" \"new_aa_parent\"; https://github.com/ogham/exa/blob/3d1edbb47052cb416ef9478106c3907586da5150/src/fs/dir.rs",
+    "GitHub code search: \"new_aa_current\" \"new_aa_parent\"; https://github.com/ogham/exa/blob/3d1edbb47052cb416ef9478106c3907586da5150/src/fs/file.rs",
+    "GitHub code search: \"lookup_short\" \"MatchedFlags\"; https://github.com/ogham/exa/blob/3d1edbb47052cb416ef9478106c3907586da5150/src/options/parser.rs",
+    "GitHub code search: \"parse_color_vars\" \"NoFileColours\"; https://github.com/ogham/exa/blob/3d1edbb47052cb416ef9478106c3907586da5150/src/theme/mod.rs",
+    "Target reference at README.md:5: eza is a modern, maintained replacement for ls, built on [exa](https://github.com/ogham/exa).",
+    "Target reference at devtools/dev-create-test-filesystem.sh:323: # Regression test for https://github.com/ogham/exa/issues/526",
+    "Target reference at devtools/dev-create-test-filesystem.sh:338: # Regression test for https://github.com/ogham/exa/issues/698",
+    "Target reference at src/fs/feature/git.rs:232:                 // https://github.com/ogham/exa/issues/698"
+   ],
+   "upstream_verdict": "code_overlap",
+   "upstream_coverage": 0.4845,
+   "upstream_matches": 99,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "tsgates/exa",
+     "verdict": "code_overlap",
+     "coverage": 0.1859,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"parse_color_vars\" \"NoFileColours\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"lookup_short\" \"MatchedFlags\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"new_aa_current\" \"new_aa_parent\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 69,
+   "target_token_warnings": 0
+  },
+  {
+   "id": "eza",
+   "kind": "project",
+   "condition": "stripped",
+   "upstream": "ogham/exa",
+   "lead_rank": 1,
+   "lead_count": 24,
+   "lead_provenance": [
+    "GitHub code search: \"new_aa_current\" \"new_aa_parent\"; https://github.com/ogham/exa/blob/3d1edbb47052cb416ef9478106c3907586da5150/src/fs/dir.rs",
+    "GitHub code search: \"new_aa_current\" \"new_aa_parent\"; https://github.com/ogham/exa/blob/3d1edbb47052cb416ef9478106c3907586da5150/src/fs/file.rs",
+    "GitHub code search: \"lookup_short\" \"MatchedFlags\"; https://github.com/ogham/exa/blob/3d1edbb47052cb416ef9478106c3907586da5150/src/options/parser.rs",
+    "GitHub code search: \"parse_color_vars\" \"NoFileColours\"; https://github.com/ogham/exa/blob/3d1edbb47052cb416ef9478106c3907586da5150/src/theme/mod.rs"
+   ],
+   "upstream_verdict": "code_overlap",
+   "upstream_coverage": 0.4823,
+   "upstream_matches": 99,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "tsgates/exa",
+     "verdict": "code_overlap",
+     "coverage": 0.1859,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "raselorf/exa",
+     "verdict": "code_overlap",
+     "coverage": 0.3772,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"parse_color_vars\" \"NoFileColours\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"lookup_short\" \"MatchedFlags\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"new_aa_current\" \"new_aa_parent\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 69,
+   "target_token_warnings": 0
+  },
+  {
+   "id": "terser",
+   "kind": "project",
+   "condition": "intact",
+   "upstream": "mishoo/UglifyJS",
+   "lead_rank": 10,
+   "lead_count": 24,
+   "lead_provenance": [
+    "GitHub code search: \"is_some_comments\" \"OutputStream\"; https://github.com/mishoo/UglifyJS/blob/111746bbae5f55c88e3b82b42f14fd0f3129ea53/lib/output.js"
+   ],
+   "upstream_verdict": null,
+   "upstream_coverage": null,
+   "upstream_matches": null,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [],
+   "code_searches": [
+    {
+     "query": "\"read_property\" \"reset_variables\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"get_full_char\" \"get_full_char_code\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"is_some_comments\" \"OutputStream\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 45,
+   "target_token_warnings": 194
+  },
+  {
+   "id": "terser",
+   "kind": "project",
+   "condition": "stripped",
+   "upstream": "mishoo/UglifyJS",
+   "lead_rank": 8,
+   "lead_count": 24,
+   "lead_provenance": [
+    "GitHub code search: \"is_some_comments\" \"OutputStream\"; https://github.com/mishoo/UglifyJS/blob/111746bbae5f55c88e3b82b42f14fd0f3129ea53/lib/output.js"
+   ],
+   "upstream_verdict": null,
+   "upstream_coverage": null,
+   "upstream_matches": null,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "banyudu/tsterser",
+     "verdict": "code_overlap",
+     "coverage": 0.0014,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "vpython/glowscript",
+     "verdict": "code_overlap",
+     "coverage": 0.0866,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"read_property\" \"reset_variables\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"get_full_char\" \"get_full_char_code\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"is_some_comments\" \"OutputStream\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 46,
+   "target_token_warnings": 193
+  },
+  {
+   "id": "golang-jwt",
+   "kind": "project",
+   "condition": "intact",
+   "upstream": "dgrijalva/jwt-go",
+   "lead_rank": 17,
+   "lead_count": 24,
+   "lead_provenance": [
+    "GitHub repositories search: jwt-go in:name,description,readme; https://github.com/dgrijalva/jwt-go",
+    "Target reference at README.md:12: **SECURITY NOTICE:** Some older versions of Go have a security issue in the crypto/elliptic. Recommendation is to upgrade to at least 1.15 See issue [dgrijalva/jwt-go#216](https://github.com/dgrijalva/jwt-go/issues/216) ",
+    "Target reference at README.md:8: **IMPORT PATH CHANGE:** Starting from [v3.2.1](https://github.com/golang-jwt/jwt/releases/tag/v3.2.1), the import path has changed from `github.com/dgrijalva/jwt-go` to `github.com/golang-jwt/jwt`. After the original aut",
+    "Target reference at MIGRATION_GUIDE.md:22: The original migration guide for older releases can be found at https://github.com/dgrijalva/jwt-go/blob/master/MIGRATION_GUIDE.md.",
+    "Target reference at rsa_pss.go:18: \t// See https://github.com/dgrijalva/jwt-go/issues/285#issuecomment-437451244 for details.",
+    "Target reference at rsa_pss_test.go:109: \t// Behaves as before https://github.com/dgrijalva/jwt-go/issues/285 fix."
+   ],
+   "upstream_verdict": null,
+   "upstream_coverage": null,
+   "upstream_matches": null,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "captaingeech42/nsa-codebreaker22",
+     "verdict": "code_overlap",
+     "coverage": 0.0361,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"benchmarkSigning\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"BenchmarkRS256Signing\" \"BenchmarkRS384Signing\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"Example_getTokenViaHTTP\" \"Example_useTokenViaHTTP\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 37,
+   "target_token_warnings": 0
+  },
+  {
+   "id": "golang-jwt",
+   "kind": "project",
+   "condition": "stripped",
+   "upstream": "dgrijalva/jwt-go",
+   "lead_rank": null,
+   "lead_count": 24,
+   "lead_provenance": [],
+   "upstream_verdict": null,
+   "upstream_coverage": null,
+   "upstream_matches": null,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "captaingeech42/nsa-codebreaker22",
+     "verdict": "code_overlap",
+     "coverage": 0.0361,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"benchmarkSigning\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"BenchmarkRS256Signing\" \"BenchmarkRS384Signing\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"Example_getTokenViaHTTP\" \"Example_useTokenViaHTTP\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 37,
+   "target_token_warnings": 0
+  },
+  {
+   "id": "nextcord",
+   "kind": "project",
+   "condition": "intact",
+   "upstream": "Rapptz/discord.py",
+   "lead_rank": 4,
+   "lead_count": 24,
+   "lead_provenance": [
+    "GitHub code search: \"ChunkRequest\" \"logging_coroutine\"; https://github.com/Rapptz/discord.py/blob/65232c38702be5844cf2ce865a4777eb1928b5d0/discord/state.py",
+    "GitHub code search: \"json_or_text\" \"get_from_cdn\"; https://github.com/Rapptz/discord.py/blob/65232c38702be5844cf2ce865a4777eb1928b5d0/discord/http.py",
+    "Target reference at docs/migrating_to_nextcord.rst:8: Due to the `original discord.py repository <https://github.com/Rapptz/discord.py>`_ becoming read-only, we decided"
+   ],
+   "upstream_verdict": "code_overlap",
+   "upstream_coverage": 0.0727,
+   "upstream_matches": 65,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "disnakedev/disnake",
+     "verdict": "code_overlap",
+     "coverage": 0.0265,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "foxwhite25/qq.py",
+     "verdict": "code_overlap",
+     "coverage": 0.1494,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"json_or_text\" \"get_from_cdn\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"ChunkRequest\" \"logging_coroutine\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"_add_channel\" \"_remove_channel\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 148,
+   "target_token_warnings": 0
+  },
+  {
+   "id": "nextcord",
+   "kind": "project",
+   "condition": "stripped",
+   "upstream": "Rapptz/discord.py",
+   "lead_rank": 4,
+   "lead_count": 24,
+   "lead_provenance": [
+    "GitHub code search: \"ChunkRequest\" \"logging_coroutine\"; https://github.com/Rapptz/discord.py/blob/65232c38702be5844cf2ce865a4777eb1928b5d0/discord/state.py",
+    "GitHub code search: \"json_or_text\" \"get_from_cdn\"; https://github.com/Rapptz/discord.py/blob/65232c38702be5844cf2ce865a4777eb1928b5d0/discord/http.py"
+   ],
+   "upstream_verdict": "code_overlap",
+   "upstream_coverage": 0.0699,
+   "upstream_matches": 62,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "disnakedev/disnake",
+     "verdict": "code_overlap",
+     "coverage": 0.0266,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "foxwhite25/qq.py",
+     "verdict": "code_overlap",
+     "coverage": 0.1213,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"json_or_text\" \"get_from_cdn\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"ChunkRequest\" \"logging_coroutine\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"_add_channel\" \"_remove_channel\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 136,
+   "target_token_warnings": 0
+  },
+  {
+   "id": "pycryptodome",
+   "kind": "project",
+   "condition": "intact",
+   "upstream": "pycrypto/pycrypto",
+   "lead_rank": null,
+   "lead_count": 24,
+   "lead_provenance": [],
+   "upstream_verdict": null,
+   "upstream_coverage": null,
+   "upstream_matches": null,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [],
+   "code_searches": [
+    {
+     "query": "\"des_ecb_encrypt\" \"des_ecb_decrypt\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"getRandomNumber\" \"getRandomInteger\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"rijndaelKeySetupEnc\" \"rijndaelKeySetupDec\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 142,
+   "target_token_warnings": 41
+  },
+  {
+   "id": "pycryptodome",
+   "kind": "project",
+   "condition": "stripped",
+   "upstream": "pycrypto/pycrypto",
+   "lead_rank": null,
+   "lead_count": 24,
+   "lead_provenance": [],
+   "upstream_verdict": null,
+   "upstream_coverage": null,
+   "upstream_matches": null,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [],
+   "code_searches": [
+    {
+     "query": "\"des_ecb_encrypt\" \"des_ecb_decrypt\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"getRandomNumber\" \"getRandomInteger\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"rijndaelKeySetupEnc\" \"rijndaelKeySetupDec\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 140,
+   "target_token_warnings": 43
+  },
+  {
+   "id": "angie",
+   "kind": "project",
+   "condition": "intact",
+   "upstream": "nginx/nginx",
+   "lead_rank": 8,
+   "lead_count": 24,
+   "lead_provenance": [
+    "GitHub code search: \"ngx_resolve_name_locked\" \"ngx_resolver_expire\"; https://github.com/nginx/nginx/blob/67290bfea61c81347464539f5e6d0a7cebec1fc8/src/core/ngx_resolver.c"
+   ],
+   "upstream_verdict": null,
+   "upstream_coverage": null,
+   "upstream_matches": null,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "alibaba/tengine",
+     "verdict": "code_overlap",
+     "coverage": 0.0089,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "chronolaw/annotated_nginx",
+     "verdict": "code_overlap",
+     "coverage": 0.4961,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"ngx_ssl_load_certificate\" \"ngx_ssl_load_certificate_key\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"ngx_resolve_name_locked\" \"ngx_resolver_expire\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"ngx_sprintf_num\" \"ngx_sprintf_str\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 100,
+   "target_token_warnings": 301
+  },
+  {
+   "id": "angie",
+   "kind": "project",
+   "condition": "stripped",
+   "upstream": "nginx/nginx",
+   "lead_rank": 8,
+   "lead_count": 24,
+   "lead_provenance": [
+    "GitHub code search: \"ngx_resolve_name_locked\" \"ngx_resolver_expire\"; https://github.com/nginx/nginx/blob/67290bfea61c81347464539f5e6d0a7cebec1fc8/src/core/ngx_resolver.c"
+   ],
+   "upstream_verdict": null,
+   "upstream_coverage": null,
+   "upstream_matches": null,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "alibaba/tengine",
+     "verdict": "code_overlap",
+     "coverage": 0.0089,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "chronolaw/annotated_nginx",
+     "verdict": "code_overlap",
+     "coverage": 0.4961,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"ngx_ssl_load_certificate\" \"ngx_ssl_load_certificate_key\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"ngx_resolve_name_locked\" \"ngx_resolver_expire\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"ngx_sprintf_num\" \"ngx_sprintf_str\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 100,
+   "target_token_warnings": 301
+  },
+  {
+   "id": "neovim",
+   "kind": "project",
+   "condition": "intact",
+   "upstream": "vim/vim",
+   "lead_rank": 1,
+   "lead_count": 13,
+   "lead_provenance": [
+    "GitHub code search: \"edit_putchar\" \"edit_unputchar\"; https://github.com/vim/vim/blob/b1091c73f8da5c70f5ba1a4528733ba25391090a/src/edit.c",
+    "GitHub code search: \"edit_putchar\" \"edit_unputchar\"; https://github.com/vim/vim/blob/b1091c73f8da5c70f5ba1a4528733ba25391090a/src/proto/edit.pro",
+    "GitHub code search: \"save_dbg_stuff\" \"restore_dbg_stuff\"; https://github.com/vim/vim/blob/b1091c73f8da5c70f5ba1a4528733ba25391090a/src/ex_docmd.c",
+    "GitHub code search: \"func_breakpoint\" \"func_dbg_tick\"; https://github.com/vim/vim/blob/b1091c73f8da5c70f5ba1a4528733ba25391090a/src/proto/userfunc.pro",
+    "GitHub code search: \"func_breakpoint\" \"func_dbg_tick\"; https://github.com/vim/vim/blob/b1091c73f8da5c70f5ba1a4528733ba25391090a/src/userfunc.c"
+   ],
+   "upstream_verdict": "code_overlap",
+   "upstream_coverage": 0.0007,
+   "upstream_matches": 1,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "rhysd/vim.wasm",
+     "verdict": "code_overlap",
+     "coverage": 0.0032,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "onivim/libvim",
+     "verdict": "code_overlap",
+     "coverage": 0.0007,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "applidium/vim",
+     "verdict": "code_overlap",
+     "coverage": 0.004,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"func_breakpoint\" \"func_dbg_tick\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"save_dbg_stuff\" \"restore_dbg_stuff\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"edit_putchar\" \"edit_unputchar\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 29,
+   "target_token_warnings": 469
+  },
+  {
+   "id": "neovim",
+   "kind": "project",
+   "condition": "stripped",
+   "upstream": "vim/vim",
+   "lead_rank": 1,
+   "lead_count": 20,
+   "lead_provenance": [
+    "GitHub code search: \"edit_putchar\" \"edit_unputchar\"; https://github.com/vim/vim/blob/b1091c73f8da5c70f5ba1a4528733ba25391090a/src/edit.c",
+    "GitHub code search: \"edit_putchar\" \"edit_unputchar\"; https://github.com/vim/vim/blob/b1091c73f8da5c70f5ba1a4528733ba25391090a/src/proto/edit.pro",
+    "GitHub code search: \"save_dbg_stuff\" \"restore_dbg_stuff\"; https://github.com/vim/vim/blob/b1091c73f8da5c70f5ba1a4528733ba25391090a/src/ex_docmd.c",
+    "GitHub code search: \"func_breakpoint\" \"func_dbg_tick\"; https://github.com/vim/vim/blob/b1091c73f8da5c70f5ba1a4528733ba25391090a/src/proto/userfunc.pro",
+    "GitHub code search: \"func_breakpoint\" \"func_dbg_tick\"; https://github.com/vim/vim/blob/b1091c73f8da5c70f5ba1a4528733ba25391090a/src/userfunc.c"
+   ],
+   "upstream_verdict": "code_overlap",
+   "upstream_coverage": 0.0007,
+   "upstream_matches": 1,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "rhysd/vim.wasm",
+     "verdict": "code_overlap",
+     "coverage": 0.0032,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "onivim/libvim",
+     "verdict": "code_overlap",
+     "coverage": 0.0007,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "applidium/vim",
+     "verdict": "code_overlap",
+     "coverage": 0.004,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"func_breakpoint\" \"func_dbg_tick\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"save_dbg_stuff\" \"restore_dbg_stuff\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"edit_putchar\" \"edit_unputchar\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 29,
+   "target_token_warnings": 469
+  },
+  {
+   "id": "mysqlclient",
+   "kind": "project",
+   "condition": "intact",
+   "upstream": "farcepest/MySQLdb1",
+   "lead_rank": 1,
+   "lead_count": 24,
+   "lead_provenance": [
+    "Target reference at README.md:6: This is a fork of [MySQLdb1](https://github.com/farcepest/MySQLdb1).",
+    "GitHub code search: \"numeric_part\" \"_get_string_literal\"; https://github.com/farcepest/MySQLdb1/blob/d34fac681487541e4be07e6978e0db233faf8252/MySQLdb/connections.py",
+    "GitHub code search: \"_check_executed\" \"_warning_check\"; https://github.com/farcepest/MySQLdb1/blob/d34fac681487541e4be07e6978e0db233faf8252/MySQLdb/cursors.py",
+    "GitHub code search: \"_mysql_Exception\" \"_mysql_server_init\"; https://github.com/farcepest/MySQLdb1/blob/d34fac681487541e4be07e6978e0db233faf8252/_mysql.c",
+    "GitHub repositories search: MySQLdb1 in:name; https://github.com/farcepest/MySQLdb1"
+   ],
+   "upstream_verdict": "corroborated_derivation",
+   "upstream_coverage": 0.3267,
+   "upstream_matches": 29,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "georce/lepus",
+     "verdict": "code_overlap",
+     "coverage": 0.3112,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "davispuh/mysql-for-python-3",
+     "verdict": "code_overlap",
+     "coverage": 0.3728,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "farcepest/moist",
+     "verdict": "code_overlap",
+     "coverage": 0.1259,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"_mysql_Exception\" \"_mysql_server_init\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"_check_executed\" \"_warning_check\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"numeric_part\" \"_get_string_literal\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 26,
+   "target_token_warnings": 0
+  },
+  {
+   "id": "mysqlclient",
+   "kind": "project",
+   "condition": "stripped",
+   "upstream": "farcepest/MySQLdb1",
+   "lead_rank": 1,
+   "lead_count": 21,
+   "lead_provenance": [
+    "GitHub code search: \"numeric_part\" \"_get_string_literal\"; https://github.com/farcepest/MySQLdb1/blob/d34fac681487541e4be07e6978e0db233faf8252/MySQLdb/connections.py",
+    "GitHub code search: \"_check_executed\" \"_warning_check\"; https://github.com/farcepest/MySQLdb1/blob/d34fac681487541e4be07e6978e0db233faf8252/MySQLdb/cursors.py",
+    "GitHub code search: \"_mysql_Exception\" \"_mysql_server_init\"; https://github.com/farcepest/MySQLdb1/blob/d34fac681487541e4be07e6978e0db233faf8252/_mysql.c"
+   ],
+   "upstream_verdict": "code_overlap",
+   "upstream_coverage": 0.3394,
+   "upstream_matches": 28,
+   "upstream_relatives_in_leads": [],
+   "other_confirmed": [
+    {
+     "repository": "georce/lepus",
+     "verdict": "code_overlap",
+     "coverage": 0.3211,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "davispuh/mysql-for-python-3",
+     "verdict": "code_overlap",
+     "coverage": 0.351,
+     "relation": "unlabelled"
+    },
+    {
+     "repository": "farcepest/moist",
+     "verdict": "code_overlap",
+     "coverage": 0.126,
+     "relation": "unlabelled"
+    }
+   ],
+   "code_searches": [
+    {
+     "query": "\"_mysql_Exception\" \"_mysql_server_init\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"_check_executed\" \"_warning_check\"",
+     "status": "10 results"
+    },
+    {
+     "query": "\"numeric_part\" \"_get_string_literal\"",
+     "status": "10 results"
+    }
+   ],
+   "target_source_files": 25,
+   "target_token_warnings": 0
+  }
+ ]
+}
